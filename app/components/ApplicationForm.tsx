@@ -3,29 +3,30 @@
 import React, { useMemo, useState } from 'react';
 import { fbqTrack } from '@/lib/pixel';
 
-const BOT_USERNAME = process.env.NEXT_PUBLIC_BOT_USERNAME || 'applyyourjob_bot';
+const BOT_USERNAME = process.env.NEXT_PUBLIC_BOT_USERNAME || 'applyyourjobhere_bot';
 
 const COUNTRIES = [
-  { iso: 'tr', name: 'Türkiye', dial: '+90' },
-  { iso: 'sy', name: 'Suriye', dial: '+963' },
-  { iso: 'in', name: 'Hindistan', dial: '+91' },
-  { iso: 'us', name: 'Amerika/Kanada', dial: '+1' },
-  { iso: 'my', name: 'Malezya', dial: '+60' },
-  { iso: 'id', name: 'Endonezya', dial: '+62' },
-  { iso: 'ph', name: 'Filipinler', dial: '+63' },
-  { iso: 'vn', name: 'Vietnam', dial: '+84' },
-  { iso: 'th', name: 'Tayland', dial: '+66' },
+  { iso: 'pl', name: 'Polska', dial: '+48' },
+  { iso: 'tr', name: 'Turcja', dial: '+90' },
+  { iso: 'sy', name: 'Syria', dial: '+963' },
+  { iso: 'in', name: 'Indie', dial: '+91' },
+  { iso: 'us', name: 'USA/Kanada', dial: '+1' },
+  { iso: 'my', name: 'Malezja', dial: '+60' },
+  { iso: 'id', name: 'Indonezja', dial: '+62' },
+  { iso: 'ph', name: 'Filipiny', dial: '+63' },
+  { iso: 'vn', name: 'Wietnam', dial: '+84' },
+  { iso: 'th', name: 'Tajlandia', dial: '+66' },
   { iso: 'mm', name: 'Myanmar', dial: '+95' },
-  { iso: 'bd', name: 'Bangladeş', dial: '+880' },
+  { iso: 'bd', name: 'Bangladesz', dial: '+880' },
   { iso: 'pk', name: 'Pakistan', dial: '+92' },
   { iso: 'np', name: 'Nepal', dial: '+977' },
   { iso: 'lk', name: 'Sri Lanka', dial: '+94' },
-  { iso: 'au', name: 'Avustralya', dial: '+61' },
-  { iso: 'za', name: 'Güney Afrika', dial: '+27' },
-  { iso: 'de', name: 'Almanya', dial: '+49' },
-  { iso: 'fr', name: 'Fransa', dial: '+33' },
-  { iso: 'gb', name: 'Birleşik Krallık', dial: '+44' },
-  { iso: 'ae', name: 'Birleşik Arap Emirlikleri', dial: '+971' },
+  { iso: 'au', name: 'Australia', dial: '+61' },
+  { iso: 'za', name: 'Republika Południowej Afryki', dial: '+27' },
+  { iso: 'de', name: 'Niemcy', dial: '+49' },
+  { iso: 'fr', name: 'Francja', dial: '+33' },
+  { iso: 'gb', name: 'Wielka Brytania', dial: '+44' },
+  { iso: 'ae', name: 'Zjednoczone Emiraty Arabskie', dial: '+971' },
   { iso: 'sg', name: 'Singapur', dial: '+65' },
 ];
 
@@ -127,15 +128,15 @@ export default function ApplicationForm() {
     const ageNum = Number(age || '0');
 
     if (!name.trim()) {
-      return setError('Lütfen adınızı girin.');
+      return setError('Wpisz swoje imię.');
     }
 
     if (!phoneE164) {
-      return setError('Lütfen Telegram telefon numaranızı girin.');
+      return setError('Wpisz numer telefonu używany w Telegramie.');
     }
 
     if (!ageNum || ageNum < 16 || ageNum > 99) {
-      return setError('Lütfen geçerli bir yaş girin. Yaş aralığı: 16–99.');
+      return setError('Wpisz prawidłowy wiek. Zakres wieku: 16–99.');
     }
 
     const payload = {
@@ -164,23 +165,23 @@ export default function ApplicationForm() {
       const data = (await response.json().catch(() => null)) as LeadApiResponse | null;
 
       if (!response.ok || !data?.ok) {
-        throw new Error(data?.error || 'Başvuru kaydedilemedi.');
+        throw new Error(data?.error || 'Nie udało się zapisać zgłoszenia.');
       }
 
       if (data.isNew === true) {
         try {
           fbqTrack('CompleteRegistration', { action: 'unique_phone_submit' });
         } catch {
-          // Başvuru kaydedilmişse, piksel gönderilemese bile kullanıcı devam eder.
+          // Jeśli zgłoszenie zostało zapisane, użytkownik może kontynuować nawet wtedy, gdy piksel nie zostanie wysłany.
         }
       }
 
-      setOkMsg('Kaydedildi! Telegram açılıyor…');
+      setOkMsg('Zapisano! Otwieranie Telegrama…');
       setSaving(false);
       openTelegram();
     } catch {
       setSaving(false);
-      setError('Başvurunuz kaydedilemedi. Lütfen tekrar deneyin.');
+      setError('Nie udało się zapisać zgłoszenia. Spróbuj ponownie.');
     }
   };
 
@@ -188,21 +189,21 @@ export default function ApplicationForm() {
     <form onSubmit={handleSubmit} className="mt-6">
       <div className="p-6 md:p-8 rounded-2xl border border-slate-200 bg-white shadow-sm">
         <p className="text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
-          İşe alım ekibimiz başvuru sahipleriyle Telegram üzerinden iletişime geçecektir.
-          Lütfen Telegram’da kullandığınız telefon numarasını girin.
+          Nasz zespół rekrutacyjny skontaktuje się z kandydatami przez Telegram.
+          Wpisz numer telefonu, którego używasz w Telegramie.
         </p>
 
-        <label className="block text-sm font-medium text-slate-700 mt-2">* Adınız</label>
+        <label className="block text-sm font-medium text-slate-700 mt-2">* Imię</label>
         <input
           type="text"
-          placeholder="Adınızı yazın"
+          placeholder="Wpisz swoje imię"
           value={name}
           onChange={(e) => setName(e.target.value)}
           className="mt-2 w-full h-12 rounded-xl border border-slate-300 px-3 focus:outline-none focus:ring-4 focus:ring-blue-100"
         />
 
         <label className="block text-sm font-medium text-slate-700 mt-6">
-          * Telegram telefon numarası
+          * Numer telefonu Telegram
         </label>
 
         <div className="mt-2 grid grid-cols-10 gap-3">
@@ -225,7 +226,7 @@ export default function ApplicationForm() {
           <input
             type="tel"
             inputMode="numeric"
-            placeholder="Sadece rakam girin"
+            placeholder="Wpisz tylko cyfry"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             className="col-span-7 h-12 rounded-xl border border-slate-300 px-3 focus:outline-none focus:ring-4 focus:ring-blue-100"
@@ -233,11 +234,11 @@ export default function ApplicationForm() {
         </div>
 
         <p className="mt-1 text-xs text-slate-500">
-          Bu numara Telegram için kontrol edilecektir:&nbsp;
+          Ten numer zostanie sprawdzony w Telegramie:&nbsp;
           <strong>{phoneE164 || '—'}</strong>
         </p>
 
-        <label className="block text-sm font-medium text-slate-700 mt-6">* Cinsiyet</label>
+        <label className="block text-sm font-medium text-slate-700 mt-6">* Płeć</label>
         <div className="mt-2 flex items-center gap-6">
           <label className="inline-flex items-center gap-2">
             <input
@@ -246,7 +247,7 @@ export default function ApplicationForm() {
               checked={gender === 'male'}
               onChange={() => setGender('male')}
             />
-            <span>Erkek</span>
+            <span>Mężczyzna</span>
           </label>
 
           <label className="inline-flex items-center gap-2">
@@ -256,16 +257,16 @@ export default function ApplicationForm() {
               checked={gender === 'female'}
               onChange={() => setGender('female')}
             />
-            <span>Kadın</span>
+            <span>Kobieta</span>
           </label>
         </div>
 
-        <label className="block text-sm font-medium text-slate-700 mt-6">* Yaş</label>
+        <label className="block text-sm font-medium text-slate-700 mt-6">* Wiek</label>
         <input
           type="number"
           min={16}
           max={99}
-          placeholder="Yaşınızı yazın"
+          placeholder="Wpisz swój wiek"
           value={age}
           onChange={(e) => setAge(e.target.value)}
           className="mt-2 w-full h-12 rounded-xl border border-slate-300 px-3 focus:outline-none focus:ring-4 focus:ring-blue-100"
@@ -276,7 +277,7 @@ export default function ApplicationForm() {
           disabled={saving}
           className="mt-8 inline-flex items-center justify-center rounded-xl bg-blue-600 text-white px-6 h-12 hover:bg-blue-700 disabled:opacity-60"
         >
-          {saving ? 'Kaydediliyor…' : 'Kaydet'}
+          {saving ? 'Zapisywanie…' : 'Zapisz'}
         </button>
 
         {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
