@@ -19,19 +19,19 @@ import {
 import ApplicationForm from "./components/ApplicationForm";
 
 const categories = [
-  { name: "Tasarım", icon: <Star className="w-5 h-5" aria-hidden /> },
-  { name: "Pazarlama", icon: <Rocket className="w-5 h-5" aria-hidden /> },
-  { name: "Operasyon", icon: <Globe2 className="w-5 h-5" aria-hidden /> },
-  { name: "Müşteri Desteği", icon: <ShieldCheck className="w-5 h-5" aria-hidden /> },
-  { name: "Satış", icon: <Star className="w-5 h-5" aria-hidden /> },
-  { name: "İçerik", icon: <Star className="w-5 h-5" aria-hidden /> },
+  { name: "Projektowanie", icon: <Star className="w-5 h-5" aria-hidden /> },
+  { name: "Marketing", icon: <Rocket className="w-5 h-5" aria-hidden /> },
+  { name: "Operacje", icon: <Globe2 className="w-5 h-5" aria-hidden /> },
+  { name: "Obsługa klienta", icon: <ShieldCheck className="w-5 h-5" aria-hidden /> },
+  { name: "Sprzedaż", icon: <Star className="w-5 h-5" aria-hidden /> },
+  { name: "Treści", icon: <Star className="w-5 h-5" aria-hidden /> },
 ];
 
 export default function Page() {
   return (
     <div className="min-h-screen w-full bg-white text-slate-900">
       <div className="w-full text-xs text-center py-2 bg-[var(--brand-muted)] text-[var(--brand)]">
-        <span className="font-medium">Yeni:</span> Önceden değerlendirilmiş yarı zamanlı işleri günler içinde almaya başlayın — başvuru ücreti yok.
+        <span className="font-medium">Nowość:</span> Zacznij otrzymywać sprawdzone oferty pracy zdalnej w ciągu kilku dni — bez opłaty za zgłoszenie.
       </div>
 
       <header className="sticky top-0 z-30 backdrop-blur bg-white/70 border-b border-slate-100">
@@ -41,13 +41,13 @@ export default function Page() {
             <span className="font-semibold tracking-tight">HirePro</span>
           </div>
           <nav className="hidden md:flex items-center gap-6 text-sm text-slate-600">
-            <a href="#how" className="hover:text-slate-900">Nasıl çalışır?</a>
-            <a href="#jobs" className="hover:text-slate-900">İşler</a>
-            <a href="#req" className="hover:text-slate-900">Şartlar</a>
-            <a href="#faq" className="hover:text-slate-900">SSS</a>
+            <a href="#how" className="hover:text-slate-900">Jak to działa?</a>
+            <a href="#jobs" className="hover:text-slate-900">Praca</a>
+            <a href="#req" className="hover:text-slate-900">Wymagania</a>
+            <a href="#faq" className="hover:text-slate-900">FAQ</a>
           </nav>
           <div className="flex items-center gap-2">
-            <Link href="#apply" className="btn-primary px-4">Hemen başvur</Link>
+            <Link href="#apply" className="btn-primary px-4">Aplikuj teraz</Link>
           </div>
         </div>
       </header>
@@ -55,19 +55,19 @@ export default function Page() {
       <section className="relative bg-[var(--brand-muted)]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-16">
           <h1 className="text-4xl sm:text-5xl font-bold leading-tight tracking-tight text-[var(--brand)]">
-            İşinizi hemen alın
+            Zacznij pracę już teraz
           </h1>
           <p className="mt-5 text-slate-700 text-lg">
-            Her yerden çalışın! İnternet üzerinden çalışmak, bulunduğunuz yerden para kazanma fırsatı sunar.
+            Pracuj z dowolnego miejsca! Praca online daje możliwość zarabiania bez wychodzenia z domu.
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-3 text-slate-600 text-sm">
             <CheckCircle className="w-4 h-4" />
-            <span>Ön ödeme yok</span>
+            <span>Bez opłat z góry</span>
             <CheckCircle className="w-4 h-4" />
-            <span>Ortalama eşleşme <strong>48 saat</strong></span>
+            <span>Średni czas dopasowania <strong>48 godzin</strong></span>
             <CheckCircle className="w-4 h-4" />
-            <span>Güvenli ödeme sistemi</span>
+            <span>Bezpieczny system płatności</span>
           </div>
         </div>
       </section>
@@ -76,8 +76,8 @@ export default function Page() {
 
       <section id="how" className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold">Kategoriye göre göz atın</h2>
-          <p className="text-slate-600 mt-2">Popüler alanlarda esnek çalışma fırsatlarını bulun.</p>
+          <h2 className="text-2xl font-bold">Przeglądaj według kategorii</h2>
+          <p className="text-slate-600 mt-2">Znajdź elastyczne możliwości pracy w popularnych obszarach.</p>
 
           <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
             {categories.map((c) => (
@@ -94,35 +94,35 @@ export default function Page() {
 
       <section id="jobs" className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold">Yarı zamanlı ve tam zamanlı işler için başvuru alıyoruz!</h2>
+          <h2 className="text-2xl font-bold">Przyjmujemy zgłoszenia do pracy dorywczej i stałej!</h2>
 
           <div className="mt-6 grid lg:grid-cols-3 gap-6">
-            <Card title="Yarı zamanlı iş yapın">
+            <Card title="Praca dorywcza">
               <ul className="space-y-2 text-slate-700">
-                <li>Görevin tamamlanmasına bağlı olarak günde <strong>200–1500 TL</strong> kazanabilirsiniz</li>
-                <li>Görev tamamlandıktan sonra <strong>günlük ödeme</strong></li>
-                <li>Günde <strong>1–3 saat</strong> çalışma</li>
-                <li>Basit online görevleri telefonunuzla tamamlayın</li>
-                <li>Dijital bilgi avantaj sağlar</li>
-                <li>Evden esnek çalışma saatleri</li>
+                <li>W zależności od wykonanych zadań możesz zarobić dziennie <strong>40–200 PLN</strong></li>
+                <li>Po ukończeniu zadań otrzymujesz <strong>wypłatę dzienną</strong></li>
+                <li>Praca przez <strong>1–3 godziny dziennie</strong></li>
+                <li>Proste zadania online możesz wykonywać za pomocą telefonu</li>
+                <li>Podstawowa wiedza cyfrowa będzie dodatkowym atutem</li>
+                <li>Elastyczne godziny pracy z domu</li>
               </ul>
             </Card>
 
-            <Card title="Tam zamanlı">
+            <Card title="Praca stała">
               <ul className="space-y-2 text-slate-700">
-                <li>Görevin tamamlanmasına bağlı olarak günde <strong>en az 3.000 TL’den fazla</strong> kazanabilirsiniz</li>
-                <li>Günde <strong>1–3 saat</strong> çalışma</li>
-                <li>Basit online görevleri telefonunuzla tamamlayın</li>
-                <li>Dijital bilgi avantaj sağlar</li>
-                <li>Evden esnek çalışma saatleri</li>
+                <li>W zależności od wykonanych zadań możesz zarobić dziennie <strong>co najmniej 400 PLN</strong></li>
+                <li>Praca przez <strong>1–3 godziny dziennie</strong></li>
+                <li>Proste zadania online możesz wykonywać za pomocą telefonu</li>
+                <li>Podstawowa wiedza cyfrowa będzie dodatkowym atutem</li>
+                <li>Elastyczne godziny pracy z domu</li>
               </ul>
             </Card>
 
-            <Card title="Cömert bonuslu esnek yarı zamanlı çalışma!">
+            <Card title="Elastyczna praca dorywcza z atrakcyjnymi bonusami!">
               <ul className="space-y-3 text-slate-700">
-                <li><strong>5 gün üst üste çalışın:</strong> 5 gün sürekli çalıştıktan sonra güzel bir bonus alırsınız.</li>
-                <li><strong>15 güne uzatın:</strong> 15 gün üst üste çalışın, ilk miktarın iki katından fazla ödül kazanın.</li>
-                <li><strong>Ay boyunca devam edin:</strong> Tam 30 gün bizimle kalırsanız ilk miktarın <strong>8 katı</strong> bonus kazanırsınız.</li>
+                <li><strong>Pracuj 5 dni z rzędu:</strong> po 5 dniach ciągłej pracy otrzymasz atrakcyjny bonus.</li>
+                <li><strong>Przedłuż do 15 dni:</strong> pracuj 15 dni z rzędu i zdobądź nagrodę ponad dwukrotnie większą niż początkowa kwota.</li>
+                <li><strong>Kontynuuj przez cały miesiąc:</strong> jeśli zostaniesz z nami przez pełne 30 dni, otrzymasz bonus nawet <strong>8 razy</strong> większy.</li>
               </ul>
             </Card>
           </div>
@@ -135,17 +135,17 @@ export default function Page() {
             className="rounded-2xl p-8 sm:p-10 text-white"
             style={{ background: `linear-gradient(0deg, rgba(37,99,235,0.25), rgba(37,99,235,0.25)), #0f172a` }}
           >
-            <p className="text-blue-300 font-semibold">İşinizi burada bulun!</p>
-            <h3 className="text-3xl sm:text-4xl font-bold mt-2">Gerçekten evden çalışın</h3>
+            <p className="text-blue-300 font-semibold">Znajdź swoją pracę tutaj!</p>
+            <h3 className="text-3xl sm:text-4xl font-bold mt-2">Pracuj naprawdę z domu</h3>
             <p className="mt-3 text-white/80 max-w-3xl">
-              Esnek çalışın, kendi programınızı belirleyin ve ailenizle daha fazla zaman geçirin. Görevleri herhangi bir online cihazdan tamamlayın.
+              Pracuj elastycznie, ustalaj własny harmonogram i spędzaj więcej czasu z rodziną. Zadania możesz wykonywać z dowolnego urządzenia online.
             </p>
 
             <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
-              <Stat number="183,2+" label="BAŞVURU" />
-              <Stat number="12,500+" label="VERİLEN GÖREV" />
-              <Stat number="300+" label="EKİBİMİZ" />
-              <Stat number="4.81" label="MEMNUNİYET" />
+              <Stat number="183,2+" label="ZGŁOSZENIA" />
+              <Stat number="12,500+" label="PRZYDZIELONE ZADANIA" />
+              <Stat number="300+" label="NASZ ZESPÓŁ" />
+              <Stat number="4.81" label="SATYSFAKCJA" />
             </div>
           </div>
         </div>
@@ -153,13 +153,13 @@ export default function Page() {
 
       <section id="req" className="py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold mb-6">İş şartları</h2>
+          <h2 className="text-2xl font-bold mb-6">Wymagania</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-            <Req icon={<Smartphone className="w-5 h-5" />} text="Telefonunuz gelir kaynağınız olabilir" />
-            <Req icon={<Monitor className="w-5 h-5" />} text="Akıllı telefona sahip olun" />
-            <Req icon={<IdCard className="w-5 h-5" />} text="23 yaş üzerindeki herkes başvurabilir" />
-            <Req icon={<Users className="w-5 h-5" />} text="Kadın ve erkek adaylar başvurabilir" />
-            <Req icon={<Lightbulb className="w-5 h-5" />} text="Dijital bilgi avantaj sağlar" />
+            <Req icon={<Smartphone className="w-5 h-5" />} text="Twój telefon może stać się źródłem dochodu" />
+            <Req icon={<Monitor className="w-5 h-5" />} text="Posiadanie smartfona jest wymagane" />
+            <Req icon={<IdCard className="w-5 h-5" />} text="Osoby powyżej 23 roku życia mogą aplikować" />
+            <Req icon={<Users className="w-5 h-5" />} text="Kandydaci i kandydatki mogą aplikować" />
+            <Req icon={<Lightbulb className="w-5 h-5" />} text="Podstawowa wiedza cyfrowa będzie dodatkowym atutem" />
           </div>
         </div>
       </section>
@@ -167,9 +167,9 @@ export default function Page() {
       <section id="why" className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-3 gap-6">
           {[
-            { icon: <ShieldCheck className="w-5 h-5" />, title: "Güven ve emniyet", desc: "Aşamalı ödemeler ve kimlik doğrulama." },
-            { icon: <Rocket className="w-5 h-5" />, title: "1–2 gün içinde", desc: "Çoğu başvuru sahibi formu gönderdikten sonra 1–2 gün içinde başlar." },
-            { icon: <Star className="w-5 h-5" />, title: "Seçilmiş adaylar", desc: "Becerileri, uygunluğu ve çalışma saatlerini değerlendiriyoruz." },
+            { icon: <ShieldCheck className="w-5 h-5" />, title: "Zaufanie i bezpieczeństwo", desc: "Stopniowe płatności i weryfikacja tożsamości." },
+            { icon: <Rocket className="w-5 h-5" />, title: "Start w 1–2 dni", desc: "Większość kandydatów zaczyna w ciągu 1–2 dni od wysłania formularza." },
+            { icon: <Star className="w-5 h-5" />, title: "Starannie wybrani kandydaci", desc: "Oceniamy umiejętności, dopasowanie i dostępne godziny pracy." },
           ].map((f) => (
             <div key={f.title} className="card-like p-6">
               <div className="w-10 h-10 rounded-xl mb-3 flex items-center justify-center bg-[var(--brand-muted)] text-[var(--brand)]">
@@ -187,12 +187,12 @@ export default function Page() {
       <section className="py-16 bg-slate-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-8 items-center">
           <div>
-            <h3 className="text-3xl font-semibold">Başvurmaya hazır mısınız?</h3>
-            <p className="mt-2 text-slate-300">Formu doldurun, işe alım ekibi Telegram üzerinden sizinle iletişime geçsin.</p>
+            <h3 className="text-3xl font-semibold">Gotowy/gotowa do aplikowania?</h3>
+            <p className="mt-2 text-slate-300">Wypełnij formularz, a zespół rekrutacyjny skontaktuje się z Tobą przez Telegram.</p>
           </div>
           <div className="flex gap-3">
-            <Link href="#apply" className="btn-primary px-6">Hemen başvur</Link>
-            <button className="btn-secondary px-6">Destek ile iletişime geç</button>
+            <Link href="#apply" className="btn-primary px-6">Aplikuj teraz</Link>
+            <button className="btn-secondary px-6">Skontaktuj się z pomocą</button>
           </div>
         </div>
       </section>
@@ -201,14 +201,14 @@ export default function Page() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm text-slate-600">
           <div>
             <div className="w-10 h-10 rounded-xl bg-[var(--brand)] text-white flex items-center justify-center font-bold mb-3">HP</div>
-            <p>HirePro, güvenilir yarı zamanlı işleri bulmanıza yardımcı olur.</p>
+            <p>HirePro pomaga znaleźć zaufane możliwości pracy dorywczej i zdalnej.</p>
           </div>
-          <Column title="Şirket" items={["Hakkımızda", "Kariyer", "Blog"]} />
-          <Column title="Destek" items={["Yardım Merkezi", "Güvenlik", "İletişim"]} />
-          <Column title="Yasal" items={["Şartlar", "Gizlilik", "Çerezler"]} />
+          <Column title="Firma" items={["O nas", "Kariera", "Blog"]} />
+          <Column title="Wsparcie" items={["Centrum pomocy", "Bezpieczeństwo", "Kontakt"]} />
+          <Column title="Informacje prawne" items={["Warunki", "Prywatność", "Pliki cookie"]} />
         </div>
         <div className="text-xs text-slate-400 text-center mt-6">
-          © {new Date().getFullYear()} HirePro, Inc. Tüm hakları saklıdır.
+          © {new Date().getFullYear()} HirePro, Inc. Wszelkie prawa zastrzeżone.
         </div>
       </footer>
     </div>
@@ -261,17 +261,17 @@ function Column({ title, items }: { title: string; items: string[] }) {
 
 function FAQSection() {
   const items = [
-    { q: "Kimler başvurabilir?", a: "23 yaş ve üzeri, akıllı telefonu ve internet bağlantısı olan herkes başvurabilir." },
-    { q: "Bu iş uzaktan mı?", a: "Evet, tamamen uzaktan. İstediğiniz yerden çalışabilirsiniz." },
-    { q: "Nasıl başvurabilirim?", a: "Başvuru formunu doldurun ve gönderin. İşe alım ekibi Telegram üzerinden sizinle iletişime geçecektir." },
-    { q: "Ne kadar hızlı başlayabilirim?", a: "Çoğu başvuru sahibi formu gönderdikten sonra 1–2 gün içinde başlar." },
-    { q: "Günde kaç saat çalışmam gerekiyor?", a: "Genellikle günde 1–3 saat. Çalışma programı esnektir." },
+    { q: "Kto może aplikować?", a: "Każdy, kto ma 23 lata lub więcej, smartfon i połączenie z internetem, może aplikować." },
+    { q: "Czy ta praca jest zdalna?", a: "Tak, praca jest w pełni zdalna. Możesz pracować z dowolnego miejsca." },
+    { q: "Jak mogę aplikować?", a: "Wypełnij i wyślij formularz zgłoszeniowy. Zespół rekrutacyjny skontaktuje się z Tobą przez Telegram." },
+    { q: "Jak szybko mogę zacząć?", a: "Większość kandydatów zaczyna w ciągu 1–2 dni od wysłania formularza." },
+    { q: "Ile godzin dziennie muszę pracować?", a: "Zwykle 1–3 godziny dziennie. Harmonogram pracy jest elastyczny." },
   ];
 
   return (
     <section id="faq" className="py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-2xl font-bold mb-6 text-[var(--brand)]">Sıkça sorulan sorular</h2>
+        <h2 className="text-2xl font-bold mb-6 text-[var(--brand)]">Najczęściej zadawane pytania</h2>
         <div className="space-y-3">
           {items.map((it, i) => <FAQItem key={i} q={it.q} a={it.a} />)}
         </div>
