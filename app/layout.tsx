@@ -4,9 +4,9 @@ import type { Metadata } from 'next';
 import MetaPixel from '@/components/MetaPixel';
 
 export const metadata: Metadata = {
-  title: 'HirePro Türkiye | Online İş Fırsatları',
+  title: 'HirePro Polska | Oferty pracy online',
   description:
-    'HirePro ile Türkiye’de online yarı zamanlı ve tam zamanlı iş fırsatlarını keşfedin. Evden çalışın ve günlük kazanç elde edin.',
+    'Odkryj z HirePro możliwości pracy online w Polsce. Pracuj z domu, wykonuj proste zadania i otrzymuj dzienne wynagrodzenie.',
 };
 
 export default function RootLayout({
@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="tr">
+    <html lang="pl">
       <body>
         <MetaPixel />
         {children}
