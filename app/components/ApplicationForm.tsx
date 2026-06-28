@@ -135,8 +135,8 @@ export default function ApplicationForm() {
       return setError('Wpisz numer telefonu używany w Telegramie.');
     }
 
-    if (!ageNum || ageNum < 16 || ageNum > 99) {
-      return setError('Wpisz prawidłowy wiek. Zakres wieku: 16–99.');
+    if (!ageNum || ageNum < 23 || ageNum > 99) {
+      return setError('Wpisz prawidłowy wiek. Zakres wieku: 23–99.');
     }
 
     const payload = {
@@ -264,7 +264,7 @@ export default function ApplicationForm() {
         <label className="block text-sm font-medium text-slate-700 mt-6">* Wiek</label>
         <input
           type="number"
-          min={16}
+          min={23}
           max={99}
           placeholder="Wpisz swój wiek"
           value={age}
