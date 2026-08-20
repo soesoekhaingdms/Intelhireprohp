@@ -3,31 +3,32 @@
 import React, { useMemo, useState } from 'react';
 import { fbqTrack } from '@/lib/pixel';
 
-const BOT_USERNAME = process.env.NEXT_PUBLIC_BOT_USERNAME || 'applyyourjobhere_bot';
+const BOT_USERNAME =
+  process.env.NEXT_PUBLIC_BOT_USERNAME || 'applyyourjobhere_bot';
 
 const COUNTRIES = [
-  { iso: 'pl', name: 'Polska', dial: '+48' },
-  { iso: 'tr', name: 'Turcja', dial: '+90' },
+  { iso: 'in', name: 'India', dial: '+91' },
+  { iso: 'pl', name: 'Poland', dial: '+48' },
+  { iso: 'tr', name: 'Turkey', dial: '+90' },
   { iso: 'sy', name: 'Syria', dial: '+963' },
-  { iso: 'in', name: 'Indie', dial: '+91' },
-  { iso: 'us', name: 'USA/Kanada', dial: '+1' },
-  { iso: 'my', name: 'Malezja', dial: '+60' },
-  { iso: 'id', name: 'Indonezja', dial: '+62' },
-  { iso: 'ph', name: 'Filipiny', dial: '+63' },
-  { iso: 'vn', name: 'Wietnam', dial: '+84' },
-  { iso: 'th', name: 'Tajlandia', dial: '+66' },
+  { iso: 'us', name: 'USA/Canada', dial: '+1' },
+  { iso: 'my', name: 'Malaysia', dial: '+60' },
+  { iso: 'id', name: 'Indonesia', dial: '+62' },
+  { iso: 'ph', name: 'Philippines', dial: '+63' },
+  { iso: 'vn', name: 'Vietnam', dial: '+84' },
+  { iso: 'th', name: 'Thailand', dial: '+66' },
   { iso: 'mm', name: 'Myanmar', dial: '+95' },
-  { iso: 'bd', name: 'Bangladesz', dial: '+880' },
+  { iso: 'bd', name: 'Bangladesh', dial: '+880' },
   { iso: 'pk', name: 'Pakistan', dial: '+92' },
   { iso: 'np', name: 'Nepal', dial: '+977' },
   { iso: 'lk', name: 'Sri Lanka', dial: '+94' },
   { iso: 'au', name: 'Australia', dial: '+61' },
-  { iso: 'za', name: 'Republika Południowej Afryki', dial: '+27' },
-  { iso: 'de', name: 'Niemcy', dial: '+49' },
-  { iso: 'fr', name: 'Francja', dial: '+33' },
-  { iso: 'gb', name: 'Wielka Brytania', dial: '+44' },
-  { iso: 'ae', name: 'Zjednoczone Emiraty Arabskie', dial: '+971' },
-  { iso: 'sg', name: 'Singapur', dial: '+65' },
+  { iso: 'za', name: 'South Africa', dial: '+27' },
+  { iso: 'de', name: 'Germany', dial: '+49' },
+  { iso: 'fr', name: 'France', dial: '+33' },
+  { iso: 'gb', name: 'United Kingdom', dial: '+44' },
+  { iso: 'ae', name: 'United Arab Emirates', dial: '+971' },
+  { iso: 'sg', name: 'Singapore', dial: '+65' },
 ];
 
 const isMobile = () =>
@@ -83,7 +84,10 @@ export default function ApplicationForm() {
 
   const phoneE164 = useMemo(() => {
     const countryCode = onlyDigits(selectedCountry.dial);
-    return countryCode && phoneLocalNumber ? `+${countryCode}${phoneLocalNumber}` : '';
+
+    return countryCode && phoneLocalNumber
+      ? `+${countryCode}${phoneLocalNumber}`
+      : '';
   }, [selectedCountry, phoneLocalNumber]);
 
   const openTelegram = () => {
@@ -128,15 +132,15 @@ export default function ApplicationForm() {
     const ageNum = Number(age || '0');
 
     if (!name.trim()) {
-      return setError('Wpisz swoje imię.');
+      return setError('Please enter your name.');
     }
 
     if (!phoneE164) {
-      return setError('Wpisz numer telefonu używany w Telegramie.');
+      return setError('Please enter the phone number you use on Telegram.');
     }
 
-    if (!ageNum || ageNum < 23 || ageNum > 99) {
-      return setError('Wpisz prawidłowy wiek. Zakres wieku: 23–99.');
+    if (!ageNum || ageNum < 18 || ageNum > 99) {
+      return setError('Please enter a valid age. Age range: 18–99.');
     }
 
     const payload = {
@@ -162,26 +166,30 @@ export default function ApplicationForm() {
         body: JSON.stringify(payload),
       });
 
-      const data = (await response.json().catch(() => null)) as LeadApiResponse | null;
+      const data = (await response
+        .json()
+        .catch(() => null)) as LeadApiResponse | null;
 
       if (!response.ok || !data?.ok) {
-        throw new Error(data?.error || 'Nie udało się zapisać zgłoszenia.');
+        throw new Error(data?.error || 'Unable to submit your application.');
       }
 
       if (data.isNew === true) {
         try {
-          fbqTrack('CompleteRegistration', { action: 'unique_phone_submit' });
+          fbqTrack('CompleteRegistration', {
+            action: 'unique_phone_submit',
+          });
         } catch {
-          // Jeśli zgłoszenie zostało zapisane, użytkownik może kontynuować nawet wtedy, gdy piksel nie zostanie wysłany.
+          // Continue even if the Meta Pixel event cannot be sent.
         }
       }
 
-      setOkMsg('Zapisano! Otwieranie Telegrama…');
+      setOkMsg('Application submitted! Opening Telegram…');
       setSaving(false);
       openTelegram();
     } catch {
       setSaving(false);
-      setError('Nie udało się zapisać zgłoszenia. Spróbuj ponownie.');
+      setError('Unable to submit your application. Please try again.');
     }
   };
 
@@ -189,21 +197,24 @@ export default function ApplicationForm() {
     <form onSubmit={handleSubmit} className="mt-6">
       <div className="p-6 md:p-8 rounded-2xl border border-slate-200 bg-white shadow-sm">
         <p className="text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
-          Nasz zespół rekrutacyjny skontaktuje się z kandydatami przez Telegram.
-          Wpisz numer telefonu, którego używasz w Telegramie.
+          Our recruitment team will contact applicants through Telegram.
+          Please enter the phone number you use on Telegram.
         </p>
 
-        <label className="block text-sm font-medium text-slate-700 mt-2">* Imię</label>
+        <label className="block text-sm font-medium text-slate-700 mt-2">
+          * Name
+        </label>
+
         <input
           type="text"
-          placeholder="Wpisz swoje imię"
+          placeholder="Enter your name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           className="mt-2 w-full h-12 rounded-xl border border-slate-300 px-3 focus:outline-none focus:ring-4 focus:ring-blue-100"
         />
 
         <label className="block text-sm font-medium text-slate-700 mt-6">
-          * Numer telefonu Telegram
+          * Telegram Phone Number
         </label>
 
         <div className="mt-2 grid grid-cols-10 gap-3">
@@ -211,7 +222,9 @@ export default function ApplicationForm() {
             value={selectedCountry.iso}
             onChange={(e) =>
               setSelectedCountry(
-                COUNTRIES.find((country) => country.iso === e.target.value) || COUNTRIES[0]
+                COUNTRIES.find(
+                  (country) => country.iso === e.target.value
+                ) || COUNTRIES[0]
               )
             }
             className="col-span-3 h-12 rounded-xl border border-slate-300 px-3 bg-white focus:outline-none focus:ring-4 focus:ring-blue-100"
@@ -226,7 +239,7 @@ export default function ApplicationForm() {
           <input
             type="tel"
             inputMode="numeric"
-            placeholder="Wpisz tylko cyfry"
+            placeholder="Enter phone number"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             className="col-span-7 h-12 rounded-xl border border-slate-300 px-3 focus:outline-none focus:ring-4 focus:ring-blue-100"
@@ -234,11 +247,14 @@ export default function ApplicationForm() {
         </div>
 
         <p className="mt-1 text-xs text-slate-500">
-          Ten numer zostanie sprawdzony w Telegramie:&nbsp;
+          This number will be verified on Telegram:&nbsp;
           <strong>{phoneE164 || '—'}</strong>
         </p>
 
-        <label className="block text-sm font-medium text-slate-700 mt-6">* Płeć</label>
+        <label className="block text-sm font-medium text-slate-700 mt-6">
+          * Gender
+        </label>
+
         <div className="mt-2 flex items-center gap-6">
           <label className="inline-flex items-center gap-2">
             <input
@@ -247,7 +263,7 @@ export default function ApplicationForm() {
               checked={gender === 'male'}
               onChange={() => setGender('male')}
             />
-            <span>Mężczyzna</span>
+            <span>Male</span>
           </label>
 
           <label className="inline-flex items-center gap-2">
@@ -257,16 +273,19 @@ export default function ApplicationForm() {
               checked={gender === 'female'}
               onChange={() => setGender('female')}
             />
-            <span>Kobieta</span>
+            <span>Female</span>
           </label>
         </div>
 
-        <label className="block text-sm font-medium text-slate-700 mt-6">* Wiek</label>
+        <label className="block text-sm font-medium text-slate-700 mt-6">
+          * Age
+        </label>
+
         <input
           type="number"
-          min={23}
+          min={18}
           max={99}
-          placeholder="Wpisz swój wiek"
+          placeholder="Enter your age"
           value={age}
           onChange={(e) => setAge(e.target.value)}
           className="mt-2 w-full h-12 rounded-xl border border-slate-300 px-3 focus:outline-none focus:ring-4 focus:ring-blue-100"
@@ -277,7 +296,7 @@ export default function ApplicationForm() {
           disabled={saving}
           className="mt-8 inline-flex items-center justify-center rounded-xl bg-blue-600 text-white px-6 h-12 hover:bg-blue-700 disabled:opacity-60"
         >
-          {saving ? 'Zapisywanie…' : 'Zapisz'}
+          {saving ? 'Submitting…' : 'Submit'}
         </button>
 
         {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
