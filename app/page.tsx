@@ -19,12 +19,12 @@ import {
 import ApplicationForm from "./components/ApplicationForm";
 
 const categories = [
-  { name: "Design", icon: <Star className="w-5 h-5" aria-hidden /> },
+  { name: "Projektowanie", icon: <Star className="w-5 h-5" aria-hidden /> },
   { name: "Marketing", icon: <Rocket className="w-5 h-5" aria-hidden /> },
-  { name: "Operations", icon: <Globe2 className="w-5 h-5" aria-hidden /> },
-  { name: "Customer Support", icon: <ShieldCheck className="w-5 h-5" aria-hidden /> },
-  { name: "Sales", icon: <Star className="w-5 h-5" aria-hidden /> },
-  { name: "Content", icon: <Star className="w-5 h-5" aria-hidden /> },
+  { name: "Operacje", icon: <Globe2 className="w-5 h-5" aria-hidden /> },
+  { name: "Obsługa klienta", icon: <ShieldCheck className="w-5 h-5" aria-hidden /> },
+  { name: "Sprzedaż", icon: <Star className="w-5 h-5" aria-hidden /> },
+  { name: "Treści", icon: <Star className="w-5 h-5" aria-hidden /> },
 ];
 
 export default function Page() {
@@ -32,8 +32,8 @@ export default function Page() {
     <div className="min-h-screen w-full bg-white text-slate-900">
 
       <div className="w-full text-xs text-center py-2 bg-[var(--brand-muted)] text-[var(--brand)]">
-        <span className="font-medium">New:</span>{" "}
-        Start receiving verified remote work opportunities within a few days — no application fee.
+        <span className="font-medium">Nowość:</span>{" "}
+        Zacznij otrzymywać zweryfikowane oferty pracy zdalnej w ciągu kilku dni — bez opłaty za zgłoszenie.
       </div>
 
       <header className="sticky top-0 z-30 backdrop-blur bg-white/70 border-b border-slate-100">
@@ -47,13 +47,13 @@ export default function Page() {
 
           <nav className="hidden md:flex items-center gap-6 text-sm text-slate-600">
             <a href="#how" className="hover:text-slate-900">
-              How It Works
+              Jak to działa
             </a>
             <a href="#jobs" className="hover:text-slate-900">
-              Jobs
+              Praca
             </a>
             <a href="#req" className="hover:text-slate-900">
-              Requirements
+              Wymagania
             </a>
             <a href="#faq" className="hover:text-slate-900">
               FAQ
@@ -62,7 +62,7 @@ export default function Page() {
 
           <div className="flex items-center gap-2">
             <Link href="#apply" className="btn-primary px-4">
-              Apply Now
+              Aplikuj teraz
             </Link>
           </div>
         </div>
@@ -71,24 +71,24 @@ export default function Page() {
       <section className="relative bg-[var(--brand-muted)]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-16">
           <h1 className="text-4xl sm:text-5xl font-bold leading-tight tracking-tight text-[var(--brand)]">
-            Start Working Today
+            Zacznij pracę już teraz
           </h1>
 
           <p className="mt-5 text-slate-700 text-lg">
-            Work from anywhere! Online work gives you the flexibility to earn from home.
+            Pracuj z dowolnego miejsca! Praca online daje elastyczność i możliwość zarabiania z domu.
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-3 text-slate-600 text-sm">
             <CheckCircle className="w-4 h-4" />
-            <span>No upfront fees</span>
+            <span>Bez opłat wstępnych</span>
 
             <CheckCircle className="w-4 h-4" />
             <span>
-              Average matching time <strong>48 hours</strong>
+              Średni czas dopasowania <strong>48 godzin</strong>
             </span>
 
             <CheckCircle className="w-4 h-4" />
-            <span>Secure payment system</span>
+            <span>Bezpieczny system płatności</span>
           </div>
         </div>
       </section>
@@ -97,10 +97,10 @@ export default function Page() {
 
       <section id="how" className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold">Browse by Category</h2>
+          <h2 className="text-2xl font-bold">Przeglądaj według kategorii</h2>
 
           <p className="text-slate-600 mt-2">
-            Discover flexible work opportunities across popular categories.
+            Odkryj elastyczne możliwości pracy w popularnych kategoriach.
           </p>
 
           <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
@@ -123,80 +123,80 @@ export default function Page() {
       <section id="jobs" className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold">
-            We Are Accepting Applications for Part-Time and Full-Time Work!
+            Przyjmujemy zgłoszenia do pracy dorywczej i stałej!
           </h2>
 
           <div className="mt-6 grid lg:grid-cols-3 gap-6">
 
-            <Card title="Part-Time Work">
+            <Card title="Praca dorywcza">
               <ul className="space-y-2 text-slate-700">
                 <li>
-                  Depending on the tasks completed, you can earn{" "}
-                  <strong>₹500–₹4,500 per day</strong>
+                  W zależności od wykonanych zadań możesz zarobić{" "}
+                  <strong>40–200 PLN dziennie</strong>
                 </li>
 
                 <li>
-                  Receive <strong>daily payments</strong> after completing your tasks
+                  Otrzymuj <strong>codzienne wypłaty</strong> po wykonaniu zadań
                 </li>
 
                 <li>
-                  Work for <strong>1–3 hours per day</strong>
+                  Pracuj <strong>1–3 godziny dziennie</strong>
                 </li>
 
                 <li>
-                  Complete simple online tasks using your smartphone
+                  Wykonuj proste zadania online za pomocą smartfona
                 </li>
 
                 <li>
-                  Basic digital knowledge is an advantage
+                  Podstawowa wiedza cyfrowa jest dodatkowym atutem
                 </li>
 
                 <li>
-                  Flexible work-from-home schedule
+                  Elastyczny harmonogram pracy z domu
                 </li>
               </ul>
             </Card>
 
-            <Card title="Full-Time Work">
+            <Card title="Praca stała">
               <ul className="space-y-2 text-slate-700">
                 <li>
-                  Depending on the tasks completed, you can earn{" "}
-                  <strong>₹7,000 or more per day</strong>
+                  W zależności od wykonanych zadań możesz zarobić{" "}
+                  <strong>400 PLN lub więcej dziennie</strong>
                 </li>
 
                 <li>
-                  Work with a flexible schedule
+                  Pracuj według elastycznego harmonogramu
                 </li>
 
                 <li>
-                  Complete online tasks using your smartphone
+                  Wykonuj zadania online za pomocą smartfona
                 </li>
 
                 <li>
-                  Basic digital knowledge is an advantage
+                  Podstawowa wiedza cyfrowa jest dodatkowym atutem
                 </li>
 
                 <li>
-                  Work conveniently from home
+                  Pracuj wygodnie z domu
                 </li>
               </ul>
             </Card>
 
-            <Card title="Flexible Work with Attractive Bonuses">
+            <Card title="Elastyczna praca z atrakcyjnymi bonusami">
               <ul className="space-y-3 text-slate-700">
                 <li>
-                  <strong>Work for 5 consecutive days:</strong>{" "}
-                  complete five consecutive working days to become eligible for an additional bonus.
+                  <strong>Pracuj przez 5 kolejnych dni:</strong>{" "}
+                  wykonaj zadania przez pięć kolejnych dni, aby kwalifikować się do dodatkowego bonusu.
                 </li>
 
                 <li>
-                  <strong>Continue for 15 days:</strong>{" "}
-                  longer participation may qualify you for additional rewards.
+                  <strong>Kontynuuj przez 15 dni:</strong>{" "}
+                  dłuższy udział może kwalifikować Cię do dodatkowych nagród.
                 </li>
 
                 <li>
-                  <strong>Continue throughout the month:</strong>{" "}
-                  additional bonuses may be available based on completed work and eligibility.
+                  <strong>Kontynuuj przez cały miesiąc:</strong>{" "}
+                  dodatkowe bonusy mogą być dostępne na podstawie wykonanej pracy i kwalifikacji.
                 </li>
               </ul>
             </Card>
@@ -215,22 +215,22 @@ export default function Page() {
             }}
           >
             <p className="text-blue-300 font-semibold">
-              Find Your Opportunity Here!
+              Znajdź tutaj swoją możliwość!
             </p>
 
             <h3 className="text-3xl sm:text-4xl font-bold mt-2">
-              Work From Home
+              Praca z domu
             </h3>
 
             <p className="mt-3 text-white/80 max-w-3xl">
-              Enjoy flexible work, manage your own schedule, and work online using your preferred device.
+              Korzystaj z elastycznej pracy, zarządzaj własnym czasem i pracuj online na wybranym urządzeniu.
             </p>
 
             <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
-              <Stat number="183,2+" label="APPLICATIONS" />
-              <Stat number="12,500+" label="TASKS ASSIGNED" />
-              <Stat number="300+" label="OUR TEAM" />
-              <Stat number="4.81" label="SATISFACTION" />
+              <Stat number="183,2+" label="ZGŁOSZENIA" />
+              <Stat number="12,500+" label="PRZYDZIELONE ZADANIA" />
+              <Stat number="300+" label="NASZ ZESPÓŁ" />
+              <Stat number="4.81" label="SATYSFAKCJA" />
             </div>
           </div>
         </div>
@@ -240,34 +240,34 @@ export default function Page() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <h2 className="text-2xl font-bold mb-6">
-            Requirements
+            Wymagania
           </h2>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
 
             <Req
               icon={<Smartphone className="w-5 h-5" />}
-              text="Work conveniently using your smartphone"
+              text="Pracuj wygodnie za pomocą smartfona"
             />
 
             <Req
               icon={<Monitor className="w-5 h-5" />}
-              text="A smartphone and internet connection are required"
+              text="Wymagany jest smartfon i połączenie z internetem"
             />
 
             <Req
               icon={<IdCard className="w-5 h-5" />}
-              text="Applicants aged 18 or above can apply"
+              text="Aplikować mogą osoby w wieku 23 lat lub starsze"
             />
 
             <Req
               icon={<Users className="w-5 h-5" />}
-              text="Open to all eligible applicants"
+              text="Oferta otwarta dla wszystkich kwalifikujących się kandydatów"
             />
 
             <Req
               icon={<Lightbulb className="w-5 h-5" />}
-              text="Basic digital knowledge is an advantage"
+              text="Podstawowa wiedza cyfrowa jest dodatkowym atutem"
             />
 
           </div>
@@ -279,18 +279,18 @@ export default function Page() {
           {[
             {
               icon: <ShieldCheck className="w-5 h-5" />,
-              title: "Trust & Security",
-              desc: "A structured application and verification process.",
+              title: "Zaufanie i bezpieczeństwo",
+              desc: "Ustrukturyzowany proces zgłoszenia i weryfikacji.",
             },
             {
               icon: <Rocket className="w-5 h-5" />,
-              title: "Start in 1–2 Days",
-              desc: "Many applicants can begin within 1–2 days after completing the application process.",
+              title: "Start w 1–2 dni",
+              desc: "Wielu kandydatów może rozpocząć w ciągu 1–2 dni po zakończeniu procesu zgłoszenia.",
             },
             {
               icon: <Star className="w-5 h-5" />,
-              title: "Flexible Opportunities",
-              desc: "Opportunities are matched according to suitability and availability.",
+              title: "Elastyczne możliwości",
+              desc: "Możliwości są dopasowywane do kwalifikacji i dostępności.",
             },
           ].map((f) => (
             <div key={f.title} className="card-like p-6">
@@ -312,21 +312,21 @@ export default function Page() {
 
           <div>
             <h3 className="text-3xl font-semibold">
-              Ready to Apply?
+              Gotowy/gotowa do aplikowania?
             </h3>
 
             <p className="mt-2 text-slate-300">
-              Complete the application form and our recruitment team will contact you through Telegram.
+              Wypełnij formularz zgłoszeniowy, a nasz zespół rekrutacyjny skontaktuje się z Tobą przez Telegram.
             </p>
           </div>
 
           <div className="flex gap-3">
             <Link href="#apply" className="btn-primary px-6">
-              Apply Now
+              Aplikuj teraz
             </Link>
 
             <button className="btn-secondary px-6">
-              Contact Support
+              Kontakt z pomocą
             </button>
           </div>
 
@@ -342,29 +342,29 @@ export default function Page() {
             </div>
 
             <p>
-              HirePro helps people discover flexible and remote work opportunities.
+              HirePro pomaga ludziom odkrywać elastyczne i zdalne możliwości pracy.
             </p>
           </div>
 
           <Column
-            title="Company"
-            items={["About Us", "Careers", "Blog"]}
+            title="Firma"
+            items={["O nas", "Kariera", "Blog"]}
           />
 
           <Column
-            title="Support"
-            items={["Help Center", "Safety", "Contact"]}
+            title="Wsparcie"
+            items={["Centrum pomocy", "Bezpieczeństwo", "Kontakt"]}
           />
 
           <Column
-            title="Legal"
-            items={["Terms", "Privacy", "Cookies"]}
+            title="Informacje prawne"
+            items={["Warunki", "Prywatność", "Pliki cookie"]}
           />
 
         </div>
 
         <div className="text-xs text-slate-400 text-center mt-6">
-          © {new Date().getFullYear()} HirePro, Inc. All rights reserved.
+          © {new Date().getFullYear()} HirePro, Inc. Wszelkie prawa zastrzeżone.
         </div>
       </footer>
 
@@ -453,24 +453,24 @@ function Column({
 function FAQSection() {
   const items = [
     {
-      q: "Who can apply?",
-      a: "Anyone aged 18 or above who has a smartphone and an internet connection can apply.",
+      q: "Kto może aplikować?",
+      a: "Aplikować może każda osoba w wieku 23 lat lub starsza, która ma smartfon i połączenie z internetem.",
     },
     {
-      q: "Is this remote work?",
-      a: "Yes. The work can be completed remotely from a suitable location with internet access.",
+      q: "Czy to jest praca zdalna?",
+      a: "Tak. Praca może być wykonywana zdalnie z odpowiedniego miejsca z dostępem do internetu.",
     },
     {
-      q: "How can I apply?",
-      a: "Complete and submit the application form. Our recruitment team will contact you through Telegram.",
+      q: "Jak mogę aplikować?",
+      a: "Wypełnij i wyślij formularz zgłoszeniowy. Nasz zespół rekrutacyjny skontaktuje się z Tobą przez Telegram.",
     },
     {
-      q: "How quickly can I start?",
-      a: "Many applicants can begin within 1–2 days after completing the application process.",
+      q: "Jak szybko mogę zacząć?",
+      a: "Wielu kandydatów może rozpocząć w ciągu 1–2 dni po zakończeniu procesu zgłoszenia.",
     },
     {
-      q: "How many hours do I need to work each day?",
-      a: "It is usually around 1–3 hours per day for flexible tasks, depending on the available work.",
+      q: "Ile godzin dziennie muszę pracować?",
+      a: "Zazwyczaj jest to około 1–3 godzin dziennie przy elastycznych zadaniach, w zależności od dostępnej pracy.",
     },
   ];
 
@@ -479,7 +479,7 @@ function FAQSection() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <h2 className="text-2xl font-bold mb-6 text-[var(--brand)]">
-          Frequently Asked Questions
+          Najczęściej zadawane pytania
         </h2>
 
         <div className="space-y-3">
