@@ -171,18 +171,28 @@ export default function ApplicationForm() {
         .catch(() => null)) as LeadApiResponse | null;
 
       if (!response.ok || !data?.ok) {
-        throw new Error(data?.error || "Nie udało się zapisać zgłoszenia.");
-      }
+  throw new Error(data?.error || "Nie udało się zapisać zgłoszenia.");
+}
 
-      if (data.isNew === true) {
-        try {
-          fbqTrack("CompleteRegistration", {
-            action: "unique_phone_submit",
-          });
-        } catch {
-          // Jeśli zgłoszenie zostało zapisane, użytkownik może kontynuować nawet wtedy, gdy piksel nie zostanie wysłany.
-        }
-      }
+// Fire Lead for every successfully accepted form submission.
+// This includes both new and already-existing phone numbers.
+try {
+  fbqTrack("Lead", {
+    action: "valid_form_submit",
+  });
+} catch {
+  // The user can continue even if the pixel event cannot be sent.
+}
+
+if (data.isNew === true) {
+  try {
+    fbqTrack("CompleteRegistration", {
+      action: "unique_phone_submit",
+    });
+  } catch {
+    // Jeśli zgłoszenie zostało zapisane, użytkownik może kontynuować nawet wtedy, gdy piksel nie zostanie wysłany.
+  }
+}
 
       setOkMsg("Zapisano! Otwieranie Telegrama…");
       setSaving(false);
