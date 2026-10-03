@@ -33,15 +33,15 @@ const categories = [
 export default function Page() {
   return (
     <div className="min-h-screen w-full bg-[var(--page)] text-[var(--text)]">
-      <div className="border-b border-[#30290d] bg-[#17140b] px-4 py-2 text-center text-xs text-[#e6d9a9] sm:text-sm">
+      <div className="border-b border-[#30290d] bg-[#17140b] px-3 py-1.5 text-center text-[11px] leading-snug text-[#e6d9a9] sm:text-xs">
         <span className="font-semibold text-[var(--brand)]">Neu:</span>{" "}
         Flexible Online-Arbeitsmöglichkeiten – ohne Bewerbungsgebühr.
       </div>
 
       <header className="sticky top-0 z-30 border-b border-[#252a30] bg-[#0b0e11]/95 backdrop-blur-xl">
-        <div className="container-page flex h-16 items-center justify-between gap-4">
+        <div className="container-page flex h-14 items-center justify-between gap-3 sm:h-16">
           <div className="flex items-center gap-2.5">
-            <div className="grid h-9 w-9 place-items-center rounded-xl bg-[var(--brand)] font-black text-[#111] shadow-lg shadow-yellow-500/10">
+            <div className="grid h-8 w-8 place-items-center rounded-lg bg-[var(--brand)] font-black text-[#111] shadow-lg shadow-yellow-500/10 sm:h-9 sm:w-9 sm:rounded-xl">
               HP
             </div>
             <span className="font-semibold tracking-tight text-white">HirePro</span>
@@ -70,22 +70,22 @@ export default function Page() {
 
       <main>
         <section className="border-b border-[#20252b] bg-[radial-gradient(circle_at_top_right,_rgba(240,185,11,0.10),_transparent_38%)]">
-          <div className="mx-auto max-w-4xl px-4 py-9 sm:px-6 md:py-11">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#50420e] bg-[#17140b] px-3 py-1.5 text-xs font-medium text-[#e6d9a9]">
+          <div className="mx-auto max-w-4xl px-4 py-5 sm:px-6 sm:py-7 md:py-8">
+            <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-[#50420e] bg-[#17140b] px-2.5 py-1 text-[11px] font-medium text-[#e6d9a9] sm:text-xs">
               <span aria-hidden>🇩🇪</span>
               Deutschland
             </div>
 
-            <h1 className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
+            <h1 className="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
               Starten Sie <span className="text-[var(--brand)]">jetzt</span>
             </h1>
 
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#b9bec6] sm:text-lg">
+            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#b9bec6] sm:mt-3 sm:text-base md:text-lg">
               Arbeiten Sie flexibel und ortsunabhängig. Entdecken Sie
               Online-Arbeitsmöglichkeiten, die sich an Ihren Alltag anpassen.
             </p>
 
-            <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-[#aab0b8]">
+            <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-[#aab0b8] sm:mt-4 sm:text-sm">
               <HeroPoint text="Keine Bewerbungsgebühr" />
               <HeroPoint text="Einfacher Bewerbungsprozess" />
               <HeroPoint text="Flexible Arbeitsmöglichkeiten" />
@@ -93,7 +93,7 @@ export default function Page() {
           </div>
         </section>
 
-        <section className="container-page py-7 sm:py-8">
+        <section className="container-page py-4 sm:py-6">
           <ApplicationForm />
         </section>
 
