@@ -7,27 +7,27 @@ const BOT_USERNAME =
   process.env.NEXT_PUBLIC_BOT_USERNAME || "applyyourjobhere_bot";
 
 const COUNTRIES = [
-  { iso: "pl", name: "Polska", dial: "+48" },
-  { iso: "in", name: "Indie", dial: "+91" },
-  { iso: "tr", name: "Turcja", dial: "+90" },
-  { iso: "sy", name: "Syria", dial: "+963" },
+  { iso: "de", name: "Deutschland", dial: "+49" },
+  { iso: "pl", name: "Polen", dial: "+48" },
+  { iso: "in", name: "Indien", dial: "+91" },
+  { iso: "tr", name: "Türkei", dial: "+90" },
+  { iso: "sy", name: "Syrien", dial: "+963" },
   { iso: "us", name: "USA/Kanada", dial: "+1" },
-  { iso: "my", name: "Malezja", dial: "+60" },
-  { iso: "id", name: "Indonezja", dial: "+62" },
-  { iso: "ph", name: "Filipiny", dial: "+63" },
-  { iso: "vn", name: "Wietnam", dial: "+84" },
-  { iso: "th", name: "Tajlandia", dial: "+66" },
+  { iso: "my", name: "Malaysia", dial: "+60" },
+  { iso: "id", name: "Indonesien", dial: "+62" },
+  { iso: "ph", name: "Philippinen", dial: "+63" },
+  { iso: "vn", name: "Vietnam", dial: "+84" },
+  { iso: "th", name: "Thailand", dial: "+66" },
   { iso: "mm", name: "Myanmar", dial: "+95" },
-  { iso: "bd", name: "Bangladesz", dial: "+880" },
+  { iso: "bd", name: "Bangladesch", dial: "+880" },
   { iso: "pk", name: "Pakistan", dial: "+92" },
   { iso: "np", name: "Nepal", dial: "+977" },
   { iso: "lk", name: "Sri Lanka", dial: "+94" },
-  { iso: "au", name: "Australia", dial: "+61" },
-  { iso: "za", name: "Republika Południowej Afryki", dial: "+27" },
-  { iso: "de", name: "Niemcy", dial: "+49" },
-  { iso: "fr", name: "Francja", dial: "+33" },
-  { iso: "gb", name: "Wielka Brytania", dial: "+44" },
-  { iso: "ae", name: "Zjednoczone Emiraty Arabskie", dial: "+971" },
+  { iso: "au", name: "Australien", dial: "+61" },
+  { iso: "za", name: "Südafrika", dial: "+27" },
+  { iso: "fr", name: "Frankreich", dial: "+33" },
+  { iso: "gb", name: "Großbritannien", dial: "+44" },
+  { iso: "ae", name: "Vereinigte Arabische Emirate", dial: "+971" },
   { iso: "sg", name: "Singapur", dial: "+65" },
 ];
 
@@ -132,15 +132,19 @@ export default function ApplicationForm() {
     const ageNum = Number(age || "0");
 
     if (!name.trim()) {
-      return setError("Wpisz swoje imię.");
+      return setError("Bitte geben Sie Ihren Namen ein.");
     }
 
     if (!phoneE164) {
-      return setError("Wpisz numer telefonu używany w Telegramie.");
+      return setError(
+        "Bitte geben Sie die Telefonnummer ein, die Sie bei Telegram verwenden."
+      );
     }
 
-    if (!ageNum || ageNum < 23 || ageNum > 99) {
-      return setError("Wpisz prawidłowy wiek. Zakres wieku: 23–99.");
+    if (!ageNum || ageNum < 18 || ageNum > 99) {
+      return setError(
+        "Bitte geben Sie ein gültiges Alter zwischen 18 und 99 Jahren ein."
+      );
     }
 
     const payload = {
@@ -171,60 +175,66 @@ export default function ApplicationForm() {
         .catch(() => null)) as LeadApiResponse | null;
 
       if (!response.ok || !data?.ok) {
-  throw new Error(data?.error || "Nie udało się zapisać zgłoszenia.");
-}
+        throw new Error(
+          data?.error || "Die Bewerbung konnte nicht gespeichert werden."
+        );
+      }
 
-// Fire Lead for every successfully accepted form submission.
-// This includes both new and already-existing phone numbers.
-try {
-  fbqTrack("Lead", {
-    action: "valid_form_submit",
-  });
-} catch {
-  // The user can continue even if the pixel event cannot be sent.
-}
+      // Lead fires for every successfully accepted form submission.
+      // Existing behavior is intentionally unchanged.
+      try {
+        fbqTrack("Lead", {
+          action: "valid_form_submit",
+        });
+      } catch {
+        // Continue even if the browser pixel event cannot be sent.
+      }
 
-if (data.isNew === true) {
-  try {
-    fbqTrack("CompleteRegistration", {
-      action: "unique_phone_submit",
-    });
-  } catch {
-    // Jeśli zgłoszenie zostało zapisane, użytkownik może kontynuować nawet wtedy, gdy piksel nie zostanie wysłany.
-  }
-}
+      // CompleteRegistration fires only for a new unique phone number.
+      // Existing behavior is intentionally unchanged.
+      if (data.isNew === true) {
+        try {
+          fbqTrack("CompleteRegistration", {
+            action: "unique_phone_submit",
+          });
+        } catch {
+          // Continue even if the browser pixel event cannot be sent.
+        }
+      }
 
-      setOkMsg("Zapisano! Otwieranie Telegrama…");
+      setOkMsg("Gespeichert! Telegram wird geöffnet…");
       setSaving(false);
       openTelegram();
     } catch {
       setSaving(false);
-      setError("Nie udało się zapisać zgłoszenia. Spróbuj ponownie.");
+      setError(
+        "Die Bewerbung konnte nicht gespeichert werden. Bitte versuchen Sie es erneut."
+      );
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-6">
+    <form id="apply" onSubmit={handleSubmit} className="mt-6">
       <div className="p-6 md:p-8 rounded-2xl border border-slate-200 bg-white shadow-sm">
         <p className="text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
-          Nasz zespół rekrutacyjny skontaktuje się z kandydatami przez Telegram.
-          Wpisz numer telefonu, którego używasz w Telegramie.
+          Unser Recruiting-Team kontaktiert Bewerber über Telegram. Bitte geben
+          Sie die Telefonnummer ein, die Sie bei Telegram verwenden.
         </p>
 
         <label className="block text-sm font-medium text-slate-700 mt-2">
-          * Imię
+          * Name
         </label>
 
         <input
           type="text"
-          placeholder="Wpisz swoje imię"
+          placeholder="Geben Sie Ihren Namen ein"
           value={name}
           onChange={(e) => setName(e.target.value)}
           className="mt-2 w-full h-12 rounded-xl border border-slate-300 px-3 focus:outline-none focus:ring-4 focus:ring-blue-100"
         />
 
         <label className="block text-sm font-medium text-slate-700 mt-6">
-          * Numer telefonu Telegram
+          * Telegram-Telefonnummer
         </label>
 
         <div className="mt-2 grid grid-cols-10 gap-3">
@@ -249,7 +259,7 @@ if (data.isNew === true) {
           <input
             type="tel"
             inputMode="numeric"
-            placeholder="Wpisz numer telefonu"
+            placeholder="Telefonnummer eingeben"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             className="col-span-7 h-12 rounded-xl border border-slate-300 px-3 focus:outline-none focus:ring-4 focus:ring-blue-100"
@@ -257,12 +267,12 @@ if (data.isNew === true) {
         </div>
 
         <p className="mt-1 text-xs text-slate-500">
-          Ten numer zostanie sprawdzony w Telegramie:&nbsp;
+          Diese Nummer wird für Telegram verwendet:&nbsp;
           <strong>{phoneE164 || "—"}</strong>
         </p>
 
         <label className="block text-sm font-medium text-slate-700 mt-6">
-          * Płeć
+          * Geschlecht
         </label>
 
         <div className="mt-2 flex items-center gap-6">
@@ -273,7 +283,7 @@ if (data.isNew === true) {
               checked={gender === "male"}
               onChange={() => setGender("male")}
             />
-            <span>Mężczyzna</span>
+            <span>Männlich</span>
           </label>
 
           <label className="inline-flex items-center gap-2">
@@ -283,19 +293,19 @@ if (data.isNew === true) {
               checked={gender === "female"}
               onChange={() => setGender("female")}
             />
-            <span>Kobieta</span>
+            <span>Weiblich</span>
           </label>
         </div>
 
         <label className="block text-sm font-medium text-slate-700 mt-6">
-          * Wiek
+          * Alter
         </label>
 
         <input
           type="number"
-          min={23}
+          min={18}
           max={99}
-          placeholder="Wpisz swój wiek"
+          placeholder="Geben Sie Ihr Alter ein"
           value={age}
           onChange={(e) => setAge(e.target.value)}
           className="mt-2 w-full h-12 rounded-xl border border-slate-300 px-3 focus:outline-none focus:ring-4 focus:ring-blue-100"
@@ -306,7 +316,7 @@ if (data.isNew === true) {
           disabled={saving}
           className="mt-8 inline-flex items-center justify-center rounded-xl bg-blue-600 text-white px-6 h-12 hover:bg-blue-700 disabled:opacity-60"
         >
-          {saving ? "Zapisywanie…" : "Zapisz"}
+          {saving ? "Wird gespeichert…" : "Bewerbung absenden"}
         </button>
 
         {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
