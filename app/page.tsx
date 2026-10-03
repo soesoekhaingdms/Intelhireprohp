@@ -19,21 +19,24 @@ import {
 import ApplicationForm from "./components/ApplicationForm";
 
 const categories = [
-  { name: "Projektowanie", icon: <Star className="w-5 h-5" aria-hidden /> },
+  { name: "Design", icon: <Star className="w-5 h-5" aria-hidden /> },
   { name: "Marketing", icon: <Rocket className="w-5 h-5" aria-hidden /> },
-  { name: "Operacje", icon: <Globe2 className="w-5 h-5" aria-hidden /> },
-  { name: "Obsługa klienta", icon: <ShieldCheck className="w-5 h-5" aria-hidden /> },
-  { name: "Sprzedaż", icon: <Star className="w-5 h-5" aria-hidden /> },
-  { name: "Treści", icon: <Star className="w-5 h-5" aria-hidden /> },
+  { name: "Operations", icon: <Globe2 className="w-5 h-5" aria-hidden /> },
+  {
+    name: "Kundenservice",
+    icon: <ShieldCheck className="w-5 h-5" aria-hidden />,
+  },
+  { name: "Vertrieb", icon: <Star className="w-5 h-5" aria-hidden /> },
+  { name: "Content", icon: <Star className="w-5 h-5" aria-hidden /> },
 ];
 
 export default function Page() {
   return (
     <div className="min-h-screen w-full bg-white text-slate-900">
-
       <div className="w-full text-xs text-center py-2 bg-[var(--brand-muted)] text-[var(--brand)]">
-        <span className="font-medium">Nowość:</span>{" "}
-        Zacznij otrzymywać zweryfikowane oferty pracy zdalnej w ciągu kilku dni — bez opłaty za zgłoszenie.
+        <span className="font-medium">Neu:</span>{" "}
+        Entdecken Sie flexible Online-Arbeitsmöglichkeiten – ohne
+        Bewerbungsgebühr.
       </div>
 
       <header className="sticky top-0 z-30 backdrop-blur bg-white/70 border-b border-slate-100">
@@ -47,14 +50,17 @@ export default function Page() {
 
           <nav className="hidden md:flex items-center gap-6 text-sm text-slate-600">
             <a href="#how" className="hover:text-slate-900">
-              Jak to działa
+              So funktioniert es
             </a>
+
             <a href="#jobs" className="hover:text-slate-900">
-              Praca
+              Jobs
             </a>
+
             <a href="#req" className="hover:text-slate-900">
-              Wymagania
+              Voraussetzungen
             </a>
+
             <a href="#faq" className="hover:text-slate-900">
               FAQ
             </a>
@@ -62,7 +68,7 @@ export default function Page() {
 
           <div className="flex items-center gap-2">
             <Link href="#apply" className="btn-primary px-4">
-              Aplikuj teraz
+              Jetzt bewerben
             </Link>
           </div>
         </div>
@@ -71,24 +77,25 @@ export default function Page() {
       <section className="relative bg-[var(--brand-muted)]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-16">
           <h1 className="text-4xl sm:text-5xl font-bold leading-tight tracking-tight text-[var(--brand)]">
-            Zacznij pracę już teraz
+            Starten Sie jetzt
           </h1>
 
           <p className="mt-5 text-slate-700 text-lg">
-            Pracuj z dowolnego miejsca! Praca online daje elastyczność i możliwość zarabiania z domu.
+            Arbeiten Sie flexibel und ortsunabhängig. Entdecken Sie
+            Online-Arbeitsmöglichkeiten, die sich an Ihren Alltag anpassen.
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-3 text-slate-600 text-sm">
             <CheckCircle className="w-4 h-4" />
-            <span>Bez opłat wstępnych</span>
+            <span>Keine Bewerbungsgebühr</span>
 
             <CheckCircle className="w-4 h-4" />
             <span>
-              Średni czas dopasowania <strong>48 godzin</strong>
+              Schneller und einfacher <strong>Bewerbungsprozess</strong>
             </span>
 
             <CheckCircle className="w-4 h-4" />
-            <span>Bezpieczny system płatności</span>
+            <span>Flexible Arbeitsmöglichkeiten</span>
           </div>
         </div>
       </section>
@@ -97,10 +104,13 @@ export default function Page() {
 
       <section id="how" className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold">Przeglądaj według kategorii</h2>
+          <h2 className="text-2xl font-bold">
+            Möglichkeiten nach Kategorie entdecken
+          </h2>
 
           <p className="text-slate-600 mt-2">
-            Odkryj elastyczne możliwości pracy w popularnych kategoriach.
+            Entdecken Sie flexible Arbeitsmöglichkeiten in verschiedenen
+            Bereichen.
           </p>
 
           <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
@@ -123,84 +133,83 @@ export default function Page() {
       <section id="jobs" className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold">
-            Przyjmujemy zgłoszenia do pracy dorywczej i stałej!
+            Vollzeit- und Teilzeitmöglichkeiten
           </h2>
 
           <div className="mt-6 grid lg:grid-cols-3 gap-6">
-
-            <Card title="Praca dorywcza">
+            <Card title="Teilzeit">
               <ul className="space-y-2 text-slate-700">
                 <li>
-                  W zależności od wykonanych zadań możesz zarobić{" "}
-                  <strong>40–200 PLN dziennie</strong>
+                  Je nach Tätigkeit und Arbeitsumfang sind etwa{" "}
+                  <strong>30–389 € pro Tag</strong> möglich
                 </li>
 
                 <li>
-                  Otrzymuj <strong>codzienne wypłaty</strong> po wykonaniu zadań
+                  Teilzeitbeschäftigte können etwa{" "}
+                  <strong>1.890–2.690 € brutto pro Monat</strong> verdienen
+                </li>
+
+                <li>Flexible Arbeitszeiten je nach verfügbaren Aufgaben</li>
+
+                <li>
+                  Online-Aufgaben bequem per Smartphone erledigen
                 </li>
 
                 <li>
-                  Pracuj <strong>1–3 godziny dziennie</strong>
+                  Grundlegende digitale Kenntnisse sind von Vorteil
                 </li>
 
-                <li>
-                  Wykonuj proste zadania online za pomocą smartfona
-                </li>
-
-                <li>
-                  Podstawowa wiedza cyfrowa jest dodatkowym atutem
-                </li>
-
-                <li>
-                  Elastyczny harmonogram pracy z domu
-                </li>
+                <li>Flexibles Arbeiten von zu Hause</li>
               </ul>
             </Card>
 
-            <Card title="Praca stała">
+            <Card title="Vollzeit">
               <ul className="space-y-2 text-slate-700">
                 <li>
-                  W zależności od wykonanych zadań możesz zarobić{" "}
-                  <strong>400 PLN lub więcej dziennie</strong>
+                  Vollzeitbeschäftigte können etwa{" "}
+                  <strong>3.590–4.850 € brutto pro Monat</strong> verdienen
                 </li>
 
                 <li>
-                  Pracuj według elastycznego harmonogramu
+                  Je nach Tätigkeit und Arbeitsumfang sind bis zu{" "}
+                  <strong>389 € pro Tag</strong> möglich
+                </li>
+
+                <li>Flexible Arbeitszeiten je nach Tätigkeit</li>
+
+                <li>
+                  Online-Aufgaben können per Smartphone erledigt werden
                 </li>
 
                 <li>
-                  Wykonuj zadania online za pomocą smartfona
+                  Grundlegende digitale Kenntnisse sind von Vorteil
                 </li>
 
-                <li>
-                  Podstawowa wiedza cyfrowa jest dodatkowym atutem
-                </li>
-
-                <li>
-                  Pracuj wygodnie z domu
-                </li>
+                <li>Bequem von zu Hause arbeiten</li>
               </ul>
             </Card>
 
-            <Card title="Elastyczna praca z atrakcyjnymi bonusami">
+            <Card title="Flexible Arbeit mit zusätzlichen Vorteilen">
               <ul className="space-y-3 text-slate-700">
                 <li>
-                  <strong>Pracuj przez 5 kolejnych dni:</strong>{" "}
-                  wykonaj zadania przez pięć kolejnych dni, aby kwalifikować się do dodatkowego bonusu.
+                  <strong>Flexible Teilnahme:</strong>{" "}
+                  wählen Sie verfügbare Aufgaben entsprechend Ihrer Zeit und
+                  Verfügbarkeit.
                 </li>
 
                 <li>
-                  <strong>Kontynuuj przez 15 dni:</strong>{" "}
-                  dłuższy udział może kwalifikować Cię do dodatkowych nagród.
+                  <strong>Langfristige Möglichkeiten:</strong>{" "}
+                  regelmäßige Teilnahme kann Zugang zu weiteren verfügbaren
+                  Aufgaben ermöglichen.
                 </li>
 
                 <li>
-                  <strong>Kontynuuj przez cały miesiąc:</strong>{" "}
-                  dodatkowe bonusy mogą być dostępne na podstawie wykonanej pracy i kwalifikacji.
+                  <strong>Zusätzliche Möglichkeiten:</strong>{" "}
+                  bestimmte Aufgaben oder Programme können abhängig von
+                  Qualifikation und Verfügbarkeit angeboten werden.
                 </li>
               </ul>
             </Card>
-
           </div>
         </div>
       </section>
@@ -215,22 +224,23 @@ export default function Page() {
             }}
           >
             <p className="text-blue-300 font-semibold">
-              Znajdź tutaj swoją możliwość!
+              Finden Sie Ihre passende Möglichkeit
             </p>
 
             <h3 className="text-3xl sm:text-4xl font-bold mt-2">
-              Praca z domu
+              Arbeiten von zu Hause
             </h3>
 
             <p className="mt-3 text-white/80 max-w-3xl">
-              Korzystaj z elastycznej pracy, zarządzaj własnym czasem i pracuj online na wybranym urządzeniu.
+              Nutzen Sie flexible Arbeitsmöglichkeiten, organisieren Sie Ihre
+              Zeit und erledigen Sie geeignete Aufgaben online.
             </p>
 
             <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
-              <Stat number="183,2+" label="ZGŁOSZENIA" />
-              <Stat number="12,500+" label="PRZYDZIELONE ZADANIA" />
-              <Stat number="300+" label="NASZ ZESPÓŁ" />
-              <Stat number="4.81" label="SATYSFAKCJA" />
+              <Stat number="183,2+" label="BEWERBUNGEN" />
+              <Stat number="12.500+" label="AUFGABEN" />
+              <Stat number="300+" label="TEAM" />
+              <Stat number="4,81" label="ZUFRIEDENHEIT" />
             </div>
           </div>
         </div>
@@ -238,38 +248,35 @@ export default function Page() {
 
       <section id="req" className="py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-
           <h2 className="text-2xl font-bold mb-6">
-            Wymagania
+            Voraussetzungen
           </h2>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-
             <Req
               icon={<Smartphone className="w-5 h-5" />}
-              text="Pracuj wygodnie za pomocą smartfona"
+              text="Flexible Online-Arbeit über das Smartphone"
             />
 
             <Req
               icon={<Monitor className="w-5 h-5" />}
-              text="Wymagany jest smartfon i połączenie z internetem"
+              text="Smartphone und Internetverbindung erforderlich"
             />
 
             <Req
               icon={<IdCard className="w-5 h-5" />}
-              text="Aplikować mogą osoby w wieku 23 lat lub starsze"
+              text="Bewerber müssen mindestens 23 Jahre alt sein"
             />
 
             <Req
               icon={<Users className="w-5 h-5" />}
-              text="Oferta otwarta dla wszystkich kwalifikujących się kandydatów"
+              text="Offen für geeignete und qualifizierte Bewerber"
             />
 
             <Req
               icon={<Lightbulb className="w-5 h-5" />}
-              text="Podstawowa wiedza cyfrowa jest dodatkowym atutem"
+              text="Grundlegende digitale Kenntnisse sind von Vorteil"
             />
-
           </div>
         </div>
       </section>
@@ -279,18 +286,18 @@ export default function Page() {
           {[
             {
               icon: <ShieldCheck className="w-5 h-5" />,
-              title: "Zaufanie i bezpieczeństwo",
-              desc: "Ustrukturyzowany proces zgłoszenia i weryfikacji.",
+              title: "Strukturierter Bewerbungsprozess",
+              desc: "Ein einfacher Prozess zur Übermittlung und Prüfung Ihrer Bewerbung.",
             },
             {
               icon: <Rocket className="w-5 h-5" />,
-              title: "Start w 1–2 dni",
-              desc: "Wielu kandydatów może rozpocząć w ciągu 1–2 dni po zakończeniu procesu zgłoszenia.",
+              title: "Einfacher Einstieg",
+              desc: "Nach der Bewerbung erhalten geeignete Kandidaten weitere Informationen zu verfügbaren Möglichkeiten.",
             },
             {
               icon: <Star className="w-5 h-5" />,
-              title: "Elastyczne możliwości",
-              desc: "Możliwości są dopasowywane do kwalifikacji i dostępności.",
+              title: "Flexible Möglichkeiten",
+              desc: "Verfügbare Möglichkeiten richten sich nach Qualifikation, Tätigkeit und Verfügbarkeit.",
             },
           ].map((f) => (
             <div key={f.title} className="card-like p-6">
@@ -299,7 +306,10 @@ export default function Page() {
               </div>
 
               <p className="font-semibold">{f.title}</p>
-              <p className="text-slate-600 mt-2 text-sm">{f.desc}</p>
+
+              <p className="text-slate-600 mt-2 text-sm">
+                {f.desc}
+              </p>
             </div>
           ))}
         </div>
@@ -309,65 +319,62 @@ export default function Page() {
 
       <section className="py-16 bg-slate-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-8 items-center">
-
           <div>
             <h3 className="text-3xl font-semibold">
-              Gotowy/gotowa do aplikowania?
+              Bereit für Ihre Bewerbung?
             </h3>
 
             <p className="mt-2 text-slate-300">
-              Wypełnij formularz zgłoszeniowy, a nasz zespół rekrutacyjny skontaktuje się z Tobą przez Telegram.
+              Füllen Sie das Bewerbungsformular aus. Unser Recruiting-Team
+              kontaktiert geeignete Bewerber über Telegram.
             </p>
           </div>
 
           <div className="flex gap-3">
             <Link href="#apply" className="btn-primary px-6">
-              Aplikuj teraz
+              Jetzt bewerben
             </Link>
 
             <button className="btn-secondary px-6">
-              Kontakt z pomocą
+              Support kontaktieren
             </button>
           </div>
-
         </div>
       </section>
 
       <footer className="py-10 border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm text-slate-600">
-
           <div>
             <div className="w-10 h-10 rounded-xl bg-[var(--brand)] text-white flex items-center justify-center font-bold mb-3">
               HP
             </div>
 
             <p>
-              HirePro pomaga ludziom odkrywać elastyczne i zdalne możliwości pracy.
+              HirePro hilft Menschen dabei, flexible und ortsunabhängige
+              Arbeitsmöglichkeiten zu entdecken.
             </p>
           </div>
 
           <Column
-            title="Firma"
-            items={["O nas", "Kariera", "Blog"]}
+            title="Unternehmen"
+            items={["Über uns", "Karriere", "Blog"]}
           />
 
           <Column
-            title="Wsparcie"
-            items={["Centrum pomocy", "Bezpieczeństwo", "Kontakt"]}
+            title="Support"
+            items={["Hilfe", "Sicherheit", "Kontakt"]}
           />
 
           <Column
-            title="Informacje prawne"
-            items={["Warunki", "Prywatność", "Pliki cookie"]}
+            title="Rechtliches"
+            items={["Bedingungen", "Datenschutz", "Cookies"]}
           />
-
         </div>
 
         <div className="text-xs text-slate-400 text-center mt-6">
-          © {new Date().getFullYear()} HirePro, Inc. Wszelkie prawa zastrzeżone.
+          © {new Date().getFullYear()} HirePro, Inc. Alle Rechte vorbehalten.
         </div>
       </footer>
-
     </div>
   );
 }
@@ -384,6 +391,7 @@ function Card({
       <p className="text-lg font-bold text-[var(--brand)] mb-3">
         {title}
       </p>
+
       {children}
     </div>
   );
@@ -399,6 +407,7 @@ function Stat({
   return (
     <div className="flex flex-col">
       <div className="text-2xl font-semibold">{number}</div>
+
       <div className="text-[10px] tracking-widest text-white/70">
         {label}
       </div>
@@ -416,10 +425,14 @@ function Req({
   return (
     <div className="flex items-start gap-3">
       <div className="size-12 shrink-0 rounded-full bg-[var(--brand)] text-white grid place-items-center ring-4 ring-[var(--brand-muted)]">
-        <div className="w-[18px] h-[18px]">{icon}</div>
+        <div className="w-[18px] h-[18px]">
+          {icon}
+        </div>
       </div>
 
-      <p className="text-sm leading-snug">{text}</p>
+      <p className="text-sm leading-snug">
+        {text}
+      </p>
     </div>
   );
 }
@@ -453,33 +466,32 @@ function Column({
 function FAQSection() {
   const items = [
     {
-      q: "Kto może aplikować?",
-      a: "Aplikować może każda osoba w wieku 23 lat lub starsza, która ma smartfon i połączenie z internetem.",
+      q: "Wer kann sich bewerben?",
+      a: "Bewerben können sich Personen ab 23 Jahren, die über ein Smartphone und eine Internetverbindung verfügen.",
     },
     {
-      q: "Czy to jest praca zdalna?",
-      a: "Tak. Praca może być wykonywana zdalnie z odpowiedniego miejsca z dostępem do internetu.",
+      q: "Ist die Arbeit remote?",
+      a: "Ja. Geeignete Aufgaben können online von einem Ort mit zuverlässiger Internetverbindung erledigt werden.",
     },
     {
-      q: "Jak mogę aplikować?",
-      a: "Wypełnij i wyślij formularz zgłoszeniowy. Nasz zespół rekrutacyjny skontaktuje się z Tobą przez Telegram.",
+      q: "Wie kann ich mich bewerben?",
+      a: "Füllen Sie das Bewerbungsformular aus und senden Sie es ab. Unser Recruiting-Team kontaktiert geeignete Bewerber über Telegram.",
     },
     {
-      q: "Jak szybko mogę zacząć?",
-      a: "Wielu kandydatów może rozpocząć w ciągu 1–2 dni po zakończeniu procesu zgłoszenia.",
+      q: "Wie geht es nach der Bewerbung weiter?",
+      a: "Nach Eingang Ihrer Bewerbung werden die Angaben geprüft. Geeignete Kandidaten erhalten anschließend weitere Informationen zu verfügbaren Möglichkeiten.",
     },
     {
-      q: "Ile godzin dziennie muszę pracować?",
-      a: "Zazwyczaj jest to około 1–3 godzin dziennie przy elastycznych zadaniach, w zależności od dostępnej pracy.",
+      q: "Wie flexibel sind die Arbeitszeiten?",
+      a: "Die Arbeitszeiten hängen von der jeweiligen Tätigkeit, den verfügbaren Aufgaben und der gewählten Arbeitsform ab.",
     },
   ];
 
   return (
     <section id="faq" className="py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-
         <h2 className="text-2xl font-bold mb-6 text-[var(--brand)]">
-          Najczęściej zadawane pytania
+          Häufig gestellte Fragen
         </h2>
 
         <div className="space-y-3">
@@ -491,7 +503,6 @@ function FAQSection() {
             />
           ))}
         </div>
-
       </div>
     </section>
   );
@@ -516,7 +527,9 @@ function FAQItem({
         className="w-full flex items-center justify-between text-left p-4 sm:p-5"
         onClick={() => setOpen(!open)}
       >
-        <span className="font-semibold">{q}</span>
+        <span className="font-semibold">
+          {q}
+        </span>
 
         <ChevronDown
           className={`w-5 h-5 transition-transform ${
