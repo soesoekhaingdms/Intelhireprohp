@@ -467,7 +467,7 @@ function FAQSection() {
   const items = [
     {
       q: "Wer kann sich bewerben?",
-      a: "Bewerben können sich Personen ab 23 Jahren, die über ein Smartphone und eine Internetverbindung verfügen.",
+      a: "Bewerben können sich Personen ab 18 Jahren, die über ein Smartphone und eine Internetverbindung verfügen.",
     },
     {
       q: "Ist die Arbeit remote?",
