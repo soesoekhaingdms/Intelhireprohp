@@ -8,28 +8,28 @@ const BOT_USERNAME =
   process.env.NEXT_PUBLIC_BOT_USERNAME || "applyyourjobhere_bot";
 
 const COUNTRIES = [
-  { iso: "de", name: "Deutschland", dial: "+49" },
-  { iso: "pl", name: "Polen", dial: "+48" },
-  { iso: "in", name: "Indien", dial: "+91" },
-  { iso: "tr", name: "Türkei", dial: "+90" },
-  { iso: "sy", name: "Syrien", dial: "+963" },
-  { iso: "us", name: "USA/Kanada", dial: "+1" },
-  { iso: "my", name: "Malaysia", dial: "+60" },
-  { iso: "id", name: "Indonesien", dial: "+62" },
-  { iso: "ph", name: "Philippinen", dial: "+63" },
-  { iso: "vn", name: "Vietnam", dial: "+84" },
-  { iso: "th", name: "Thailand", dial: "+66" },
-  { iso: "mm", name: "Myanmar", dial: "+95" },
-  { iso: "bd", name: "Bangladesch", dial: "+880" },
-  { iso: "pk", name: "Pakistan", dial: "+92" },
-  { iso: "np", name: "Nepal", dial: "+977" },
-  { iso: "lk", name: "Sri Lanka", dial: "+94" },
-  { iso: "au", name: "Australien", dial: "+61" },
-  { iso: "za", name: "Südafrika", dial: "+27" },
-  { iso: "fr", name: "Frankreich", dial: "+33" },
-  { iso: "gb", name: "Großbritannien", dial: "+44" },
-  { iso: "ae", name: "Vereinigte Arabische Emirate", dial: "+971" },
-  { iso: "sg", name: "Singapur", dial: "+65" },
+  { iso: "de", name: "Deutschland", dial: "+49", flag: "🇩🇪" },
+  { iso: "pl", name: "Polen", dial: "+48", flag: "🇵🇱" },
+  { iso: "in", name: "Indien", dial: "+91", flag: "🇮🇳" },
+  { iso: "tr", name: "Türkei", dial: "+90", flag: "🇹🇷" },
+  { iso: "sy", name: "Syrien", dial: "+963", flag: "🇸🇾" },
+  { iso: "us", name: "USA/Kanada", dial: "+1", flag: "🇺🇸" },
+  { iso: "my", name: "Malaysia", dial: "+60", flag: "🇲🇾" },
+  { iso: "id", name: "Indonesien", dial: "+62", flag: "🇮🇩" },
+  { iso: "ph", name: "Philippinen", dial: "+63", flag: "🇵🇭" },
+  { iso: "vn", name: "Vietnam", dial: "+84", flag: "🇻🇳" },
+  { iso: "th", name: "Thailand", dial: "+66", flag: "🇹🇭" },
+  { iso: "mm", name: "Myanmar", dial: "+95", flag: "🇲🇲" },
+  { iso: "bd", name: "Bangladesch", dial: "+880", flag: "🇧🇩" },
+  { iso: "pk", name: "Pakistan", dial: "+92", flag: "🇵🇰" },
+  { iso: "np", name: "Nepal", dial: "+977", flag: "🇳🇵" },
+  { iso: "lk", name: "Sri Lanka", dial: "+94", flag: "🇱🇰" },
+  { iso: "au", name: "Australien", dial: "+61", flag: "🇦🇺" },
+  { iso: "za", name: "Südafrika", dial: "+27", flag: "🇿🇦" },
+  { iso: "fr", name: "Frankreich", dial: "+33", flag: "🇫🇷" },
+  { iso: "gb", name: "Großbritannien", dial: "+44", flag: "🇬🇧" },
+  { iso: "ae", name: "Vereinigte Arabische Emirate", dial: "+971", flag: "🇦🇪" },
+  { iso: "sg", name: "Singapur", dial: "+65", flag: "🇸🇬" },
 ];
 
 const isMobile = () =>
@@ -217,16 +217,21 @@ export default function ApplicationForm() {
       setConversionSent(true);
     }
 
-    openTelegram();
+    // Give the browser pixel a short moment to send before leaving the page on mobile.
+    if (isMobile()) {
+      window.setTimeout(openTelegram, 180);
+    } else {
+      openTelegram();
+    }
   };
 
   const fieldClass =
-    "mt-2 w-full h-12 rounded-xl border border-[#4b5159] bg-[#0f1216] px-3 text-[#f5f5f5] placeholder:text-[#737983] shadow-inner transition focus:border-[var(--brand)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-ring)] disabled:cursor-not-allowed disabled:opacity-60";
+    "mt-1.5 w-full h-11 rounded-xl border border-[#59616b] bg-[#0f1216] px-3 text-[#f5f5f5] placeholder:text-[#737983] shadow-inner transition focus:border-[var(--brand)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-ring)] disabled:cursor-not-allowed disabled:opacity-60 sm:h-12";
 
   return (
-    <form id="apply" onSubmit={handleSubmit} className="mx-auto w-full max-w-3xl scroll-mt-24">
-      <div className="rounded-2xl border border-[#343a40] bg-[var(--surface)] p-5 shadow-2xl shadow-black/20 sm:p-6">
-        <div className="mb-5 rounded-xl border border-[#5c4b12] bg-[#1a1710] px-4 py-3 text-sm leading-relaxed text-[#e6d9a9]">
+    <form id="apply" onSubmit={handleSubmit} className="mx-auto w-full max-w-3xl scroll-mt-20">
+      <div className="rounded-2xl border border-[#3c434b] bg-[var(--surface)] p-4 shadow-2xl shadow-black/20 sm:p-6">
+        <div className="mb-4 rounded-xl border border-[#5c4b12] bg-[#1a1710] px-3.5 py-2.5 text-xs leading-relaxed text-[#e6d9a9] sm:px-4 sm:py-3 sm:text-sm">
           Unser Recruiting-Team kontaktiert geeignete Bewerber über Telegram.
           Bitte verwenden Sie eine Telefonnummer, die mit Ihrem Telegram-Konto
           verbunden ist.
@@ -244,11 +249,11 @@ export default function ApplicationForm() {
           className={fieldClass}
         />
 
-        <label className="mt-5 block text-sm font-semibold text-[#e8e8e8]">
+        <label className="mt-4 block text-sm font-semibold text-[#e8e8e8]">
           * Telegram-Telefonnummer
         </label>
 
-        <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-10">
+        <div className="mt-1.5 grid grid-cols-[0.95fr_1.05fr] gap-2 sm:grid-cols-10 sm:gap-3">
           <select
             value={selectedCountry.iso}
             disabled={submitted}
@@ -258,11 +263,11 @@ export default function ApplicationForm() {
                   COUNTRIES[0]
               )
             }
-            className="h-12 rounded-xl border border-[#4b5159] bg-[#0f1216] px-3 text-[#f5f5f5] shadow-inner transition focus:border-[var(--brand)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-ring)] disabled:cursor-not-allowed disabled:opacity-60 sm:col-span-4"
+            className="h-11 min-w-0 rounded-xl border border-[#59616b] bg-[#0f1216] px-2.5 text-sm text-[#f5f5f5] shadow-inner transition focus:border-[var(--brand)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-ring)] disabled:cursor-not-allowed disabled:opacity-60 sm:col-span-4 sm:h-12 sm:px-3"
           >
             {COUNTRIES.map((country) => (
               <option key={country.iso} value={country.iso}>
-                {country.dial} — {country.name}
+                {country.flag} {country.name} · {country.dial}
               </option>
             ))}
           </select>
@@ -274,20 +279,20 @@ export default function ApplicationForm() {
             value={phone}
             disabled={submitted}
             onChange={(e) => setPhone(e.target.value)}
-            className="h-12 rounded-xl border border-[#4b5159] bg-[#0f1216] px-3 text-[#f5f5f5] placeholder:text-[#737983] shadow-inner transition focus:border-[var(--brand)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-ring)] disabled:cursor-not-allowed disabled:opacity-60 sm:col-span-6"
+            className="h-11 min-w-0 rounded-xl border border-[#59616b] bg-[#0f1216] px-2.5 text-sm text-[#f5f5f5] placeholder:text-[#737983] shadow-inner transition focus:border-[var(--brand)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-ring)] disabled:cursor-not-allowed disabled:opacity-60 sm:col-span-6 sm:h-12 sm:px-3"
           />
         </div>
 
-        <p className="mt-2 text-xs text-[#8f959e]">
+        <p className="mt-1.5 text-[11px] text-[#8f959e] sm:text-xs">
           Diese Nummer wird für Telegram verwendet:&nbsp;
           <strong className="text-[#c9cdd2]">{phoneE164 || "—"}</strong>
         </p>
 
-        <label className="mt-5 block text-sm font-semibold text-[#e8e8e8]">
+        <label className="mt-4 block text-sm font-semibold text-[#e8e8e8]">
           * Geschlecht
         </label>
 
-        <div className="mt-3 flex flex-wrap items-center gap-5 text-sm text-[#d7d9dc]">
+        <div className="mt-2 flex flex-wrap items-center gap-5 text-sm text-[#d7d9dc]">
           <label className="inline-flex items-center gap-2">
             <input
               type="radio"
@@ -313,7 +318,7 @@ export default function ApplicationForm() {
           </label>
         </div>
 
-        <label className="mt-5 block text-sm font-semibold text-[#e8e8e8]">
+        <label className="mt-4 block text-sm font-semibold text-[#e8e8e8]">
           * Alter
         </label>
 
@@ -329,7 +334,7 @@ export default function ApplicationForm() {
         />
 
         {!submitted && (
-          <div className="mt-6 flex justify-center">
+          <div className="mt-5 flex justify-center">
             <button
               type="submit"
               disabled={saving}
@@ -349,7 +354,7 @@ export default function ApplicationForm() {
         {submitted && (
           <div
             id="apply-status"
-            className="mt-6 rounded-2xl border border-[#6d5810] bg-[#17140b] p-4 sm:p-5"
+            className="mt-5 rounded-2xl border border-[#6d5810] bg-[#17140b] p-4 sm:p-5"
           >
             <div className="flex items-start gap-3">
               <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[var(--brand)]" />
