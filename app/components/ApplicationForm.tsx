@@ -61,7 +61,10 @@ const normalizeLocalPhone = (dial: string, value: string) => {
 
 type LeadApiResponse = {
   ok?: boolean;
+  id?: number;
   workCode?: string;
+  work_code?: string;
+  phone_e164?: string;
   isNew?: boolean;
   error?: string;
 };
@@ -77,6 +80,8 @@ export default function ApplicationForm() {
   const [error, setError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [submittedIsNew, setSubmittedIsNew] = useState(false);
+  const [submittedLeadId, setSubmittedLeadId] = useState<number | null>(null);
+  const [submittedPhoneE164, setSubmittedPhoneE164] = useState("");
   const [conversionSent, setConversionSent] = useState(false);
 
   const phoneLocalNumber = useMemo(
@@ -181,6 +186,8 @@ export default function ApplicationForm() {
       // Important: Meta conversion events are intentionally NOT fired here.
       // They fire only after the applicant confirms they want to continue in Telegram.
       setSubmittedIsNew(data.isNew === true);
+      setSubmittedLeadId(typeof data.id === "number" ? data.id : null);
+      setSubmittedPhoneE164(data.phone_e164 || phoneE164);
       setSubmitted(true);
       setSaving(false);
     } catch {
@@ -191,11 +198,35 @@ export default function ApplicationForm() {
     }
   };
 
-  const handleTelegramContinue = () => {
+  const handleTelegramContinue = async () => {
     setError(null);
 
-    // Fire Meta events once, and only when the user chooses to continue to Telegram.
     if (!conversionSent) {
+      const eventId =
+        typeof crypto !== "undefined" && "randomUUID" in crypto
+          ? crypto.randomUUID()
+          : `telegram-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+
+      if (submittedLeadId && submittedPhoneE164) {
+        try {
+          await fetch("/api/lead/continue", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              eventId,
+              leadId: submittedLeadId,
+              phoneE164: submittedPhoneE164,
+              isNew: submittedIsNew,
+            }),
+            keepalive: true,
+          });
+        } catch {
+          // Meta events and Telegram can still continue if DB event recording fails.
+        }
+      }
+
       try {
         fbqTrack("Lead", {
           action: "telegram_continue",
@@ -217,7 +248,6 @@ export default function ApplicationForm() {
       setConversionSent(true);
     }
 
-    // Give the browser pixel a short moment to send before leaving the page on mobile.
     if (isMobile()) {
       window.setTimeout(openTelegram, 180);
     } else {
