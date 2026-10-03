@@ -265,7 +265,7 @@ export default function Page() {
 
             <Req
               icon={<IdCard className="w-5 h-5" />}
-              text="Bewerber müssen mindestens 23 Jahre alt sein"
+              text="Bewerber müssen mindestens 18 Jahre alt sein"
             />
 
             <Req
