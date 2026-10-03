@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
+import { CheckCircle2, Send } from "lucide-react";
 import { fbqTrack } from "@/lib/pixel";
 
 const BOT_USERNAME =
@@ -55,7 +56,6 @@ const normalizeLocalPhone = (dial: string, value: string) => {
   }
 
   localNumber = localNumber.replace(/^0+/, "");
-
   return localNumber;
 };
 
@@ -75,7 +75,9 @@ export default function ApplicationForm() {
 
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [okMsg, setOkMsg] = useState<string | null>(null);
+  const [submitted, setSubmitted] = useState(false);
+  const [submittedIsNew, setSubmittedIsNew] = useState(false);
+  const [conversionSent, setConversionSent] = useState(false);
 
   const phoneLocalNumber = useMemo(
     () => normalizeLocalPhone(selectedCountry.dial, phone),
@@ -95,40 +97,36 @@ export default function ApplicationForm() {
     const tgApp = `tg://resolve?domain=${BOT_USERNAME}`;
     const tgIntent = `intent://resolve?domain=${BOT_USERNAME}#Intent;scheme=tg;package=org.telegram.messenger;end`;
 
-    setTimeout(() => {
-      if (isMobile()) {
-        location.href = tgApp;
+    if (isMobile()) {
+      location.href = tgApp;
 
-        setTimeout(() => {
-          if (document.visibilityState === "hidden") return;
+      setTimeout(() => {
+        if (document.visibilityState === "hidden") return;
 
-          const onAndroid = /Android/i.test(navigator.userAgent);
+        const onAndroid = /Android/i.test(navigator.userAgent);
 
-          if (onAndroid) {
-            location.href = tgIntent;
+        if (onAndroid) {
+          location.href = tgIntent;
 
-            setTimeout(() => {
-              if (document.visibilityState === "hidden") return;
-              location.href = tgWeb;
-            }, 400);
-          } else {
+          setTimeout(() => {
+            if (document.visibilityState === "hidden") return;
             location.href = tgWeb;
-          }
-        }, 600);
-      } else {
-        window.open(tgWeb, "_blank", "noopener,noreferrer");
-      }
-    }, 120);
+          }, 450);
+        } else {
+          location.href = tgWeb;
+        }
+      }, 650);
+    } else {
+      window.open(tgWeb, "_blank", "noopener,noreferrer");
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (saving) return;
+    if (saving || submitted) return;
 
     setError(null);
-    setOkMsg(null);
-
     const ageNum = Number(age || "0");
 
     if (!name.trim()) {
@@ -180,31 +178,11 @@ export default function ApplicationForm() {
         );
       }
 
-      // Lead fires for every successfully accepted form submission.
-      // Existing behavior is intentionally unchanged.
-      try {
-        fbqTrack("Lead", {
-          action: "valid_form_submit",
-        });
-      } catch {
-        // Continue even if the browser pixel event cannot be sent.
-      }
-
-      // CompleteRegistration fires only for a new unique phone number.
-      // Existing behavior is intentionally unchanged.
-      if (data.isNew === true) {
-        try {
-          fbqTrack("CompleteRegistration", {
-            action: "unique_phone_submit",
-          });
-        } catch {
-          // Continue even if the browser pixel event cannot be sent.
-        }
-      }
-
-      setOkMsg("Gespeichert! Telegram wird geöffnet…");
+      // Important: Meta conversion events are intentionally NOT fired here.
+      // They fire only after the applicant confirms they want to continue in Telegram.
+      setSubmittedIsNew(data.isNew === true);
+      setSubmitted(true);
       setSaving(false);
-      openTelegram();
     } catch {
       setSaving(false);
       setError(
@@ -213,41 +191,74 @@ export default function ApplicationForm() {
     }
   };
 
-  return (
-    <form id="apply" onSubmit={handleSubmit} className="mt-6">
-      <div className="p-6 md:p-8 rounded-2xl border border-slate-200 bg-white shadow-sm">
-        <p className="text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
-          Unser Recruiting-Team kontaktiert Bewerber über Telegram. Bitte geben
-          Sie die Telefonnummer ein, die Sie bei Telegram verwenden.
-        </p>
+  const handleTelegramContinue = () => {
+    setError(null);
 
-        <label className="block text-sm font-medium text-slate-700 mt-2">
+    // Fire Meta events once, and only when the user chooses to continue to Telegram.
+    if (!conversionSent) {
+      try {
+        fbqTrack("Lead", {
+          action: "telegram_continue",
+        });
+      } catch {
+        // Telegram can still open if the browser pixel event cannot be sent.
+      }
+
+      if (submittedIsNew) {
+        try {
+          fbqTrack("CompleteRegistration", {
+            action: "unique_phone_telegram_continue",
+          });
+        } catch {
+          // Telegram can still open if the browser pixel event cannot be sent.
+        }
+      }
+
+      setConversionSent(true);
+    }
+
+    openTelegram();
+  };
+
+  const fieldClass =
+    "mt-2 w-full h-12 rounded-xl border border-[#4b5159] bg-[#0f1216] px-3 text-[#f5f5f5] placeholder:text-[#737983] shadow-inner transition focus:border-[var(--brand)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-ring)] disabled:cursor-not-allowed disabled:opacity-60";
+
+  return (
+    <form id="apply" onSubmit={handleSubmit} className="mx-auto w-full max-w-3xl scroll-mt-24">
+      <div className="rounded-2xl border border-[#343a40] bg-[var(--surface)] p-5 shadow-2xl shadow-black/20 sm:p-6">
+        <div className="mb-5 rounded-xl border border-[#5c4b12] bg-[#1a1710] px-4 py-3 text-sm leading-relaxed text-[#e6d9a9]">
+          Unser Recruiting-Team kontaktiert geeignete Bewerber über Telegram.
+          Bitte verwenden Sie eine Telefonnummer, die mit Ihrem Telegram-Konto
+          verbunden ist.
+        </div>
+
+        <label className="block text-sm font-semibold text-[#e8e8e8]">
           * Name
         </label>
-
         <input
           type="text"
           placeholder="Geben Sie Ihren Namen ein"
           value={name}
+          disabled={submitted}
           onChange={(e) => setName(e.target.value)}
-          className="mt-2 w-full h-12 rounded-xl border border-slate-300 px-3 focus:outline-none focus:ring-4 focus:ring-blue-100"
+          className={fieldClass}
         />
 
-        <label className="block text-sm font-medium text-slate-700 mt-6">
+        <label className="mt-5 block text-sm font-semibold text-[#e8e8e8]">
           * Telegram-Telefonnummer
         </label>
 
-        <div className="mt-2 grid grid-cols-10 gap-3">
+        <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-10">
           <select
             value={selectedCountry.iso}
+            disabled={submitted}
             onChange={(e) =>
               setSelectedCountry(
-                COUNTRIES.find(
-                  (country) => country.iso === e.target.value
-                ) || COUNTRIES[0]
+                COUNTRIES.find((country) => country.iso === e.target.value) ||
+                  COUNTRIES[0]
               )
             }
-            className="col-span-3 h-12 rounded-xl border border-slate-300 px-3 bg-white focus:outline-none focus:ring-4 focus:ring-blue-100"
+            className="h-12 rounded-xl border border-[#4b5159] bg-[#0f1216] px-3 text-[#f5f5f5] shadow-inner transition focus:border-[var(--brand)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-ring)] disabled:cursor-not-allowed disabled:opacity-60 sm:col-span-4"
           >
             {COUNTRIES.map((country) => (
               <option key={country.iso} value={country.iso}>
@@ -261,27 +272,30 @@ export default function ApplicationForm() {
             inputMode="numeric"
             placeholder="Telefonnummer eingeben"
             value={phone}
+            disabled={submitted}
             onChange={(e) => setPhone(e.target.value)}
-            className="col-span-7 h-12 rounded-xl border border-slate-300 px-3 focus:outline-none focus:ring-4 focus:ring-blue-100"
+            className="h-12 rounded-xl border border-[#4b5159] bg-[#0f1216] px-3 text-[#f5f5f5] placeholder:text-[#737983] shadow-inner transition focus:border-[var(--brand)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-ring)] disabled:cursor-not-allowed disabled:opacity-60 sm:col-span-6"
           />
         </div>
 
-        <p className="mt-1 text-xs text-slate-500">
+        <p className="mt-2 text-xs text-[#8f959e]">
           Diese Nummer wird für Telegram verwendet:&nbsp;
-          <strong>{phoneE164 || "—"}</strong>
+          <strong className="text-[#c9cdd2]">{phoneE164 || "—"}</strong>
         </p>
 
-        <label className="block text-sm font-medium text-slate-700 mt-6">
+        <label className="mt-5 block text-sm font-semibold text-[#e8e8e8]">
           * Geschlecht
         </label>
 
-        <div className="mt-2 flex items-center gap-6">
+        <div className="mt-3 flex flex-wrap items-center gap-5 text-sm text-[#d7d9dc]">
           <label className="inline-flex items-center gap-2">
             <input
               type="radio"
               name="gender"
               checked={gender === "male"}
+              disabled={submitted}
               onChange={() => setGender("male")}
+              className="accent-[#f0b90b]"
             />
             <span>Männlich</span>
           </label>
@@ -291,13 +305,15 @@ export default function ApplicationForm() {
               type="radio"
               name="gender"
               checked={gender === "female"}
+              disabled={submitted}
               onChange={() => setGender("female")}
+              className="accent-[#f0b90b]"
             />
             <span>Weiblich</span>
           </label>
         </div>
 
-        <label className="block text-sm font-medium text-slate-700 mt-6">
+        <label className="mt-5 block text-sm font-semibold text-[#e8e8e8]">
           * Alter
         </label>
 
@@ -307,24 +323,65 @@ export default function ApplicationForm() {
           max={99}
           placeholder="Geben Sie Ihr Alter ein"
           value={age}
+          disabled={submitted}
           onChange={(e) => setAge(e.target.value)}
-          className="mt-2 w-full h-12 rounded-xl border border-slate-300 px-3 focus:outline-none focus:ring-4 focus:ring-blue-100"
+          className={fieldClass}
         />
 
-        <button
-          type="submit"
-          disabled={saving}
-          className="mt-8 inline-flex items-center justify-center rounded-xl bg-blue-600 text-white px-6 h-12 hover:bg-blue-700 disabled:opacity-60"
-        >
-          {saving ? "Wird gespeichert…" : "Bewerbung absenden"}
-        </button>
+        {!submitted && (
+          <div className="mt-6 flex justify-center">
+            <button
+              type="submit"
+              disabled={saving}
+              className="btn-primary min-w-[220px] disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {saving ? "Wird gespeichert…" : "Bewerbung absenden"}
+            </button>
+          </div>
+        )}
 
-        {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
-
-        {okMsg && (
-          <p id="apply-status" className="mt-4 text-sm text-green-600">
-            {okMsg}
+        {error && (
+          <p className="mt-4 rounded-lg border border-red-900/70 bg-red-950/40 px-3 py-2 text-sm text-red-300">
+            {error}
           </p>
+        )}
+
+        {submitted && (
+          <div
+            id="apply-status"
+            className="mt-6 rounded-2xl border border-[#6d5810] bg-[#17140b] p-4 sm:p-5"
+          >
+            <div className="flex items-start gap-3">
+              <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[var(--brand)]" />
+              <div>
+                <h3 className="m-0 text-base font-semibold text-white">
+                  Bewerbung erfolgreich übermittelt
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-[#b8bdc5]">
+                  Ihre Angaben wurden gespeichert. Um Ihre Bewerbung
+                  fortzusetzen, öffnen Sie Telegram über die Schaltfläche unten.
+                  Bitte stellen Sie sicher, dass Telegram auf Ihrem Gerät
+                  installiert ist.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-4 flex justify-center">
+              <button
+                type="button"
+                onClick={handleTelegramContinue}
+                className="btn-primary min-w-[250px] gap-2"
+              >
+                <Send className="h-4 w-4" />
+                Jetzt über Telegram bewerben
+              </button>
+            </div>
+
+            <p className="mt-3 text-center text-xs text-[#8f959e]">
+              Telegram wird erst geöffnet, nachdem Sie diese Schaltfläche
+              auswählen.
+            </p>
+          </div>
         )}
       </div>
     </form>
