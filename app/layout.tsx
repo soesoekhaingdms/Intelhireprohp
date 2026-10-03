@@ -1,36 +1,36 @@
 // app/layout.tsx
-import './globals.css';
-import type { Metadata } from 'next';
-import MetaPixel from '@/components/MetaPixel';
+import "./globals.css";
+import type { Metadata } from "next";
+import MetaPixel from "@/components/MetaPixel";
 
 export const metadata: Metadata = {
-  title: 'HirePro Polska | Oferty pracy online',
+  title: "HirePro Deutschland | Flexible Online-Jobs",
 
   description:
-    'Odkryj elastyczne możliwości pracy online w Polsce. Pracuj zdalnie, korzystaj z elastycznego grafiku i dowiedz się więcej o dostępnych możliwościach.',
+    "Entdecken Sie flexible Online-Arbeitsmöglichkeiten in Deutschland. Arbeiten Sie ortsunabhängig und finden Sie passende Vollzeit- oder Teilzeitmöglichkeiten.",
 
   openGraph: {
-    title: 'HirePro Polska | Oferty pracy online',
+    title: "HirePro Deutschland | Flexible Online-Jobs",
 
     description:
-      'Odkryj elastyczne możliwości pracy online w Polsce. Pracuj zdalnie, korzystaj z elastycznego grafiku i dowiedz się więcej o dostępnych możliwościach.',
+      "Entdecken Sie flexible Online-Arbeitsmöglichkeiten in Deutschland. Arbeiten Sie ortsunabhängig und finden Sie passende Vollzeit- oder Teilzeitmöglichkeiten.",
 
-    url: 'https://www.intelhirepropl.com/',
+    url: "https://www.intelhirepropl.com/",
 
-    siteName: 'HirePro Polska',
+    siteName: "HirePro Deutschland",
 
-    locale: 'pl_PL',
+    locale: "de_DE",
 
-    type: 'website',
+    type: "website",
   },
 
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
 
-    title: 'HirePro Polska | Oferty pracy online',
+    title: "HirePro Deutschland | Flexible Online-Jobs",
 
     description:
-      'Odkryj elastyczne możliwości pracy online w Polsce. Pracuj zdalnie, korzystaj z elastycznego grafiku i dowiedz się więcej o dostępnych możliwościach.',
+      "Entdecken Sie flexible Online-Arbeitsmöglichkeiten in Deutschland. Arbeiten Sie ortsunabhängig und finden Sie passende Vollzeit- oder Teilzeitmöglichkeiten.",
   },
 };
 
@@ -40,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pl">
+    <html lang="de">
       <body>
         <MetaPixel />
         {children}
