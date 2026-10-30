@@ -4,22 +4,22 @@ import type { Metadata } from "next";
 import MetaPixel from "@/components/MetaPixel";
 
 export const metadata: Metadata = {
-  title: "HirePro Deutschland | Flexible Online-Jobs",
+  title: "HirePro Polska | Elastyczna praca online",
 
   description:
-    "Entdecken Sie flexible Online-Arbeitsmöglichkeiten in Deutschland. Arbeiten Sie ortsunabhängig und finden Sie passende Vollzeit- oder Teilzeitmöglichkeiten.",
+    "Poznaj elastyczne możliwości pracy online w Polsce. Pracuj zdalnie i znajdź odpowiednie opcje pracy na pełny lub niepełny etat.",
 
   openGraph: {
-    title: "HirePro Deutschland | Flexible Online-Jobs",
+    title: "HirePro Polska | Elastyczna praca online",
 
     description:
-      "Entdecken Sie flexible Online-Arbeitsmöglichkeiten in Deutschland. Arbeiten Sie ortsunabhängig und finden Sie passende Vollzeit- oder Teilzeitmöglichkeiten.",
+      "Poznaj elastyczne możliwości pracy online w Polsce. Pracuj zdalnie i znajdź odpowiednie opcje pracy na pełny lub niepełny etat.",
 
     url: "https://www.intelhirepropl.com/",
 
-    siteName: "HirePro Deutschland",
+    siteName: "HirePro Polska",
 
-    locale: "de_DE",
+    locale: "pl_PL",
 
     type: "website",
   },
@@ -27,10 +27,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
 
-    title: "HirePro Deutschland | Flexible Online-Jobs",
+    title: "HirePro Polska | Elastyczna praca online",
 
     description:
-      "Entdecken Sie flexible Online-Arbeitsmöglichkeiten in Deutschland. Arbeiten Sie ortsunabhängig und finden Sie passende Vollzeit- oder Teilzeitmöglichkeiten.",
+      "Poznaj elastyczne możliwości pracy online w Polsce. Pracuj zdalnie i znajdź odpowiednie opcje pracy na pełny lub niepełny etat.",
   },
 };
 
@@ -40,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="de">
+    <html lang="pl">
       <body>
         <MetaPixel />
         {children}

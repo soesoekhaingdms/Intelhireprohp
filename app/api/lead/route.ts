@@ -17,7 +17,7 @@ export async function OPTIONS() {
   return new Response(null, {
     status: 204,
     headers: {
-      "access-control-allow-origin": "https://www.hirepr0.com",
+      "access-control-allow-origin": "https://www.intelhirepropl.com",
       "access-control-allow-methods": "GET, POST, OPTIONS",
       "access-control-allow-headers": "Content-Type, Authorization",
       "vary": "Origin",
@@ -49,7 +49,7 @@ export async function POST(req: Request) {
         // pass through a clean X-Forwarded-For so the VPS can store it
         ...(clientIp ? { "x-forwarded-for": clientIp } : {}),
         // optional: origin for your nginx allowlist (not strictly needed for S2S)
-        origin: "https://www.hirepr0.com",
+        origin: "https://www.intelhirepropl.com",
       },
       body: JSON.stringify(payload),
     });

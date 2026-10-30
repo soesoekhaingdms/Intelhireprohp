@@ -21,12 +21,12 @@ import ApplicationForm from "./components/ApplicationForm";
 const categories = [
   { name: "Design", icon: <Star className="h-5 w-5" aria-hidden /> },
   { name: "Marketing", icon: <Rocket className="h-5 w-5" aria-hidden /> },
-  { name: "Operations", icon: <Globe2 className="h-5 w-5" aria-hidden /> },
+  { name: "Operacje", icon: <Globe2 className="h-5 w-5" aria-hidden /> },
   {
-    name: "Kundenservice",
+    name: "Obsługa klienta",
     icon: <ShieldCheck className="h-5 w-5" aria-hidden />,
   },
-  { name: "Vertrieb", icon: <Star className="h-5 w-5" aria-hidden /> },
+  { name: "Sprzedaż", icon: <Star className="h-5 w-5" aria-hidden /> },
   { name: "Content", icon: <Star className="h-5 w-5" aria-hidden /> },
 ];
 
@@ -34,8 +34,8 @@ export default function Page() {
   return (
     <div className="min-h-screen w-full bg-[var(--page)] text-[var(--text)]">
       <div className="border-b border-[#30290d] bg-[#17140b] px-3 py-1.5 text-center text-[11px] leading-snug text-[#e6d9a9] sm:text-xs">
-        <span className="font-semibold text-[var(--brand)]">Neu:</span>{" "}
-        Flexible Online-Arbeitsmöglichkeiten – ohne Bewerbungsgebühr.
+        <span className="font-semibold text-[var(--brand)]">Nowość:</span>{" "}
+        Elastyczne możliwości pracy online – bez opłaty za aplikację.
       </div>
 
       <header className="sticky top-0 z-30 border-b border-[#252a30] bg-[#0b0e11]/95 backdrop-blur-xl">
@@ -49,13 +49,13 @@ export default function Page() {
 
           <nav className="hidden items-center gap-6 text-sm text-[#9da3ab] md:flex">
             <a href="#how" className="nav-link">
-              So funktioniert es
+              Jak to działa
             </a>
             <a href="#jobs" className="nav-link">
-              Jobs
+              Oferty
             </a>
             <a href="#req" className="nav-link">
-              Voraussetzungen
+              Wymagania
             </a>
             <a href="#faq" className="nav-link">
               FAQ
@@ -63,7 +63,7 @@ export default function Page() {
           </nav>
 
           <Link href="#apply" className="btn-primary whitespace-nowrap px-4 py-2.5 text-sm sm:px-5">
-            Jetzt bewerben
+            Aplikuj teraz
           </Link>
         </div>
       </header>
@@ -72,23 +72,23 @@ export default function Page() {
         <section className="border-b border-[#20252b] bg-[radial-gradient(circle_at_top_right,_rgba(240,185,11,0.10),_transparent_38%)]">
           <div className="mx-auto max-w-4xl px-4 py-5 sm:px-6 sm:py-7 md:py-8">
             <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-[#50420e] bg-[#17140b] px-2.5 py-1 text-[11px] font-medium text-[#e6d9a9] sm:text-xs">
-              <span aria-hidden>🇩🇪</span>
-              Deutschland
+              <span aria-hidden>🇵🇱</span>
+              Polska
             </div>
 
             <h1 className="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
-              Starten Sie <span className="text-[var(--brand)]">jetzt</span>
+              Zacznij <span className="text-[var(--brand)]">już teraz</span>
             </h1>
 
             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#b9bec6] sm:mt-3 sm:text-base md:text-lg">
-              Arbeiten Sie flexibel und ortsunabhängig. Entdecken Sie
-              Online-Arbeitsmöglichkeiten, die sich an Ihren Alltag anpassen.
+              Pracuj elastycznie i zdalnie. Poznaj możliwości pracy online,
+              które możesz dopasować do swojego dnia.
             </p>
 
             <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-[#aab0b8] sm:mt-4 sm:text-sm">
-              <HeroPoint text="Keine Bewerbungsgebühr" />
-              <HeroPoint text="Einfacher Bewerbungsprozess" />
-              <HeroPoint text="Flexible Arbeitsmöglichkeiten" />
+              <HeroPoint text="Brak opłaty za aplikację" />
+              <HeroPoint text="Prosty proces aplikacji" />
+              <HeroPoint text="Elastyczne możliwości pracy" />
             </div>
           </div>
         </section>
@@ -100,9 +100,9 @@ export default function Page() {
         <section id="how" className="section-compact border-t border-[#1d2228]">
           <div className="container-page">
             <SectionHeading
-              eyebrow="Bereiche"
-              title="Möglichkeiten nach Kategorie entdecken"
-              description="Entdecken Sie flexible Arbeitsmöglichkeiten in verschiedenen Bereichen."
+              eyebrow="Obszary"
+              title="Poznaj możliwości według kategorii"
+              description="Sprawdź elastyczne możliwości pracy w różnych obszarach."
             />
 
             <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
@@ -126,61 +126,60 @@ export default function Page() {
         <section id="jobs" className="section-compact bg-[var(--surface-soft)]">
           <div className="container-page">
             <SectionHeading
-              eyebrow="Arbeitsmodelle"
-              title="Vollzeit- und Teilzeitmöglichkeiten"
-              description="Vergleichen Sie flexible Optionen und wählen Sie ein Modell, das zu Ihrer Verfügbarkeit passt."
+              eyebrow="Modele pracy"
+              title="Możliwości pracy na pełny i niepełny etat"
+              description="Porównaj elastyczne opcje i wybierz model dopasowany do swojej dostępności."
             />
 
             <div className="mt-5 grid gap-4 lg:grid-cols-3">
-              <Card title="Teilzeit">
+              <Card title="Niepełny etat">
                 <ul className="space-y-2.5 text-sm leading-relaxed text-[#b6bbc3]">
                   <li>
-                    Je nach Tätigkeit und Arbeitsumfang sind etwa{" "}
-                    <strong>30–389 € pro Tag</strong> möglich
+                    W zależności od rodzaju i zakresu zadań możliwe jest około{" "}
+                    <strong>130–1 650 zł dziennie</strong>
                   </li>
                   <li>
-                    Teilzeitbeschäftigte können etwa{" "}
-                    <strong>1.890–2.690 € brutto pro Monat</strong> verdienen
+                    Przy pracy w niepełnym wymiarze można osiągnąć około{" "}
+                    <strong>8 000–11 500 zł brutto miesięcznie</strong>
                   </li>
-                  <li>Flexible Arbeitszeiten je nach verfügbaren Aufgaben</li>
-                  <li>Online-Aufgaben bequem per Smartphone erledigen</li>
-                  <li>Grundlegende digitale Kenntnisse sind von Vorteil</li>
-                  <li>Flexibles Arbeiten von zu Hause</li>
+                  <li>Elastyczne godziny zależne od dostępnych zadań</li>
+                  <li>Wygodna realizacja zadań online przez smartfon</li>
+                  <li>Podstawowe umiejętności cyfrowe będą dodatkowym atutem</li>
+                  <li>Możliwość elastycznej pracy z domu</li>
                 </ul>
               </Card>
 
-              <Card title="Vollzeit">
+              <Card title="Pełny etat">
                 <ul className="space-y-2.5 text-sm leading-relaxed text-[#b6bbc3]">
                   <li>
-                    Vollzeitbeschäftigte können etwa{" "}
-                    <strong>3.590–4.850 € brutto pro Monat</strong> verdienen
+                    Przy pracy w pełnym wymiarze można osiągnąć około{" "}
+                    <strong>15 300–20 600 zł brutto miesięcznie</strong>
                   </li>
                   <li>
-                    Je nach Tätigkeit und Arbeitsumfang sind bis zu{" "}
-                    <strong>389 € pro Tag</strong> möglich
+                    W zależności od rodzaju i zakresu zadań możliwe jest do{" "}
+                    <strong>1 650 zł dziennie</strong>
                   </li>
-                  <li>Flexible Arbeitszeiten je nach Tätigkeit</li>
-                  <li>Online-Aufgaben können per Smartphone erledigt werden</li>
-                  <li>Grundlegende digitale Kenntnisse sind von Vorteil</li>
-                  <li>Bequem von zu Hause arbeiten</li>
+                  <li>Elastyczne godziny zależne od rodzaju pracy</li>
+                  <li>Zadania online można wykonywać przez smartfon</li>
+                  <li>Podstawowe umiejętności cyfrowe będą dodatkowym atutem</li>
+                  <li>Wygodna praca z domu</li>
                 </ul>
               </Card>
 
-              <Card title="Flexible Arbeit mit zusätzlichen Vorteilen">
+              <Card title="Elastyczna praca z dodatkowymi możliwościami">
                 <ul className="space-y-3 text-sm leading-relaxed text-[#b6bbc3]">
                   <li>
-                    <strong>Flexible Teilnahme:</strong> wählen Sie verfügbare
-                    Aufgaben entsprechend Ihrer Zeit und Verfügbarkeit.
+                    <strong>Elastyczny udział:</strong> wybieraj dostępne zadania
+                    zgodnie ze swoim czasem i dostępnością.
                   </li>
                   <li>
-                    <strong>Langfristige Möglichkeiten:</strong> regelmäßige
-                    Teilnahme kann Zugang zu weiteren verfügbaren Aufgaben
-                    ermöglichen.
+                    <strong>Możliwości długoterminowe:</strong> regularna
+                    aktywność może zapewnić dostęp do kolejnych dostępnych zadań.
                   </li>
                   <li>
-                    <strong>Zusätzliche Möglichkeiten:</strong> bestimmte
-                    Aufgaben oder Programme können abhängig von Qualifikation
-                    und Verfügbarkeit angeboten werden.
+                    <strong>Dodatkowe możliwości:</strong> wybrane zadania lub
+                    programy mogą być oferowane zależnie od kwalifikacji
+                    i dostępności.
                   </li>
                 </ul>
               </Card>
@@ -192,21 +191,21 @@ export default function Page() {
           <div className="mx-auto max-w-4xl px-4 sm:px-6">
             <div className="overflow-hidden rounded-2xl border border-[#5b4b11] bg-gradient-to-br from-[#19160c] via-[#111418] to-[#0d1014] p-6 shadow-2xl shadow-black/20 sm:p-7">
               <p className="text-sm font-semibold text-[var(--brand)]">
-                Finden Sie Ihre passende Möglichkeit
+                Znajdź możliwość dopasowaną do siebie
               </p>
               <h3 className="mt-1 text-2xl font-bold text-white sm:text-3xl">
-                Arbeiten von zu Hause
+                Pracuj z domu
               </h3>
               <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#aeb4bc] sm:text-base">
-                Nutzen Sie flexible Arbeitsmöglichkeiten, organisieren Sie Ihre
-                Zeit und erledigen Sie geeignete Aufgaben online.
+                Korzystaj z elastycznych możliwości pracy, organizuj swój czas
+                i wykonuj odpowiednie zadania online.
               </p>
 
               <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                <Stat number="183,2+" label="BEWERBUNGEN" />
-                <Stat number="12.500+" label="AUFGABEN" />
-                <Stat number="300+" label="TEAM" />
-                <Stat number="4,81" label="ZUFRIEDENHEIT" />
+                <Stat number="183,2+" label="APLIKACJE" />
+                <Stat number="12 500+" label="ZADANIA" />
+                <Stat number="300+" label="ZESPÓŁ" />
+                <Stat number="4,81" label="SATYSFAKCJA" />
               </div>
             </div>
           </div>
@@ -215,31 +214,31 @@ export default function Page() {
         <section id="req" className="section-compact border-y border-[#1d2228] bg-[var(--surface-soft)]">
           <div className="container-page">
             <SectionHeading
-              eyebrow="Voraussetzungen"
-              title="Was Sie benötigen"
-              description="Die wichtigsten Voraussetzungen auf einen Blick."
+              eyebrow="Wymagania"
+              title="Czego potrzebujesz"
+              description="Najważniejsze wymagania w skrócie."
             />
 
             <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               <Req
                 icon={<Smartphone className="h-5 w-5" />}
-                text="Flexible Online-Arbeit über das Smartphone"
+                text="Elastyczna praca online przez smartfon"
               />
               <Req
                 icon={<Monitor className="h-5 w-5" />}
-                text="Smartphone und Internetverbindung erforderlich"
+                text="Wymagany smartfon i dostęp do internetu"
               />
               <Req
                 icon={<IdCard className="h-5 w-5" />}
-                text="Bewerber müssen mindestens 18 Jahre alt sein"
+                text="Kandydaci muszą mieć co najmniej 18 lat"
               />
               <Req
                 icon={<Users className="h-5 w-5" />}
-                text="Offen für geeignete und qualifizierte Bewerber"
+                text="Oferta dla odpowiednich i kwalifikujących się kandydatów"
               />
               <Req
                 icon={<Lightbulb className="h-5 w-5" />}
-                text="Grundlegende digitale Kenntnisse sind von Vorteil"
+                text="Podstawowe umiejętności cyfrowe będą dodatkowym atutem"
               />
             </div>
           </div>
@@ -250,18 +249,18 @@ export default function Page() {
             {[
               {
                 icon: <ShieldCheck className="h-5 w-5" />,
-                title: "Strukturierter Bewerbungsprozess",
-                desc: "Ein einfacher Prozess zur Übermittlung und Prüfung Ihrer Bewerbung.",
+                title: "Uporządkowany proces aplikacji",
+                desc: "Prosty proces przesłania i weryfikacji aplikacji.",
               },
               {
                 icon: <Rocket className="h-5 w-5" />,
-                title: "Einfacher Einstieg",
-                desc: "Nach der Bewerbung erhalten geeignete Kandidaten weitere Informationen zu verfügbaren Möglichkeiten.",
+                title: "Łatwy start",
+                desc: "Po złożeniu aplikacji odpowiedni kandydaci otrzymają dalsze informacje o dostępnych możliwościach.",
               },
               {
                 icon: <Star className="h-5 w-5" />,
-                title: "Flexible Möglichkeiten",
-                desc: "Verfügbare Möglichkeiten richten sich nach Qualifikation, Tätigkeit und Verfügbarkeit.",
+                title: "Elastyczne możliwości",
+                desc: "Dostępne opcje zależą od kwalifikacji, rodzaju pracy i dostępności.",
               },
             ].map((feature) => (
               <div key={feature.title} className="card-like p-5">
@@ -283,16 +282,16 @@ export default function Page() {
           <div className="container-page flex flex-col items-start justify-between gap-5 md:flex-row md:items-center">
             <div>
               <h3 className="m-0 text-2xl font-semibold text-white">
-                Bereit für Ihre Bewerbung?
+                Gotowy, aby aplikować?
               </h3>
               <p className="mt-2 max-w-2xl text-sm text-[#b6bbc3]">
-                Füllen Sie das Bewerbungsformular aus. Nach erfolgreicher
-                Übermittlung können Sie Ihre Bewerbung über Telegram fortsetzen.
+                Wypełnij formularz aplikacyjny. Po pomyślnym przesłaniu możesz
+                kontynuować aplikację przez Telegram.
               </p>
             </div>
 
             <Link href="#apply" className="btn-primary whitespace-nowrap px-6">
-              Jetzt bewerben
+              Aplikuj teraz
             </Link>
           </div>
         </section>
@@ -305,21 +304,20 @@ export default function Page() {
               HP
             </div>
             <p className="text-sm leading-relaxed text-[#8f959e]">
-              HirePro hilft Menschen dabei, flexible und ortsunabhängige
-              Arbeitsmöglichkeiten zu entdecken.
+              HirePro pomaga odkrywać elastyczne możliwości pracy zdalnej.
             </p>
           </div>
 
-          <Column title="Unternehmen" items={["Über uns", "Karriere", "Blog"]} />
-          <Column title="Support" items={["Hilfe", "Sicherheit", "Kontakt"]} />
+          <Column title="Firma" items={["O nas", "Kariera", "Blog"]} />
+          <Column title="Wsparcie" items={["Pomoc", "Bezpieczeństwo", "Kontakt"]} />
           <Column
-            title="Rechtliches"
-            items={["Bedingungen", "Datenschutz", "Cookies"]}
+            title="Informacje prawne"
+            items={["Warunki", "Prywatność", "Cookies"]}
           />
         </div>
 
         <div className="mt-6 text-center text-xs text-[#666d76]">
-          © {new Date().getFullYear()} HirePro, Inc. Alle Rechte vorbehalten.
+          © {new Date().getFullYear()} HirePro, Inc. Wszelkie prawa zastrzeżone.
         </div>
       </footer>
     </div>
@@ -414,24 +412,24 @@ function Column({ title, items }: { title: string; items: string[] }) {
 function FAQSection() {
   const items = [
     {
-      q: "Wer kann sich bewerben?",
-      a: "Bewerben können sich Personen ab 18 Jahren, die über ein Smartphone und eine Internetverbindung verfügen.",
+      q: "Kto może aplikować?",
+      a: "Aplikować mogą osoby od 18. roku życia, które mają smartfon i dostęp do internetu.",
     },
     {
-      q: "Ist die Arbeit remote?",
-      a: "Ja. Geeignete Aufgaben können online von einem Ort mit zuverlässiger Internetverbindung erledigt werden.",
+      q: "Czy praca jest zdalna?",
+      a: "Tak. Odpowiednie zadania można wykonywać online z miejsca ze stabilnym dostępem do internetu.",
     },
     {
-      q: "Wie kann ich mich bewerben?",
-      a: "Füllen Sie das Bewerbungsformular aus und senden Sie es ab. Nach erfolgreicher Übermittlung erscheint eine Schaltfläche, mit der Sie Ihre Bewerbung über Telegram fortsetzen können.",
+      q: "Jak mogę aplikować?",
+      a: "Wypełnij formularz aplikacyjny i wyślij go. Po pomyślnym przesłaniu pojawi się przycisk umożliwiający kontynuowanie aplikacji przez Telegram.",
     },
     {
-      q: "Wie geht es nach der Bewerbung weiter?",
-      a: "Nach Eingang Ihrer Bewerbung werden die Angaben geprüft. Geeignete Kandidaten erhalten anschließend weitere Informationen zu verfügbaren Möglichkeiten.",
+      q: "Co dzieje się po złożeniu aplikacji?",
+      a: "Po otrzymaniu aplikacji dane są weryfikowane. Odpowiedni kandydaci otrzymają następnie dalsze informacje o dostępnych możliwościach.",
     },
     {
-      q: "Wie flexibel sind die Arbeitszeiten?",
-      a: "Die Arbeitszeiten hängen von der jeweiligen Tätigkeit, den verfügbaren Aufgaben und der gewählten Arbeitsform ab.",
+      q: "Jak elastyczne są godziny pracy?",
+      a: "Godziny zależą od rodzaju pracy, dostępnych zadań i wybranego modelu współpracy.",
     },
   ];
 
@@ -440,8 +438,8 @@ function FAQSection() {
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <SectionHeading
           eyebrow="FAQ"
-          title="Häufig gestellte Fragen"
-          description="Antworten auf die wichtigsten Fragen zur Bewerbung."
+          title="Najczęściej zadawane pytania"
+          description="Odpowiedzi na najważniejsze pytania dotyczące aplikacji."
         />
 
         <div className="mt-5 space-y-2.5">
