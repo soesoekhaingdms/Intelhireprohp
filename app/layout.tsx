@@ -2,6 +2,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import MetaPixel from "@/components/MetaPixel";
+import TikTokPixel from "@/components/TikTokPixel";
 
 export const metadata: Metadata = {
   title: "HirePro Polska | Elastyczna praca online",
@@ -43,6 +44,7 @@ export default function RootLayout({
     <html lang="pl">
       <body>
         <MetaPixel />
+        <TikTokPixel />
         {children}
       </body>
     </html>

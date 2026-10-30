@@ -3,6 +3,7 @@
 import React, { useMemo, useState } from "react";
 import { CheckCircle2, Send } from "lucide-react";
 import { fbqTrack } from "@/lib/pixel";
+import { ttqTrack } from "@/lib/tiktok";
 
 const BOT_USERNAME =
   process.env.NEXT_PUBLIC_BOT_USERNAME || "applyyourjobhere_bot";
@@ -144,9 +145,9 @@ export default function ApplicationForm() {
       );
     }
 
-    if (!ageNum || ageNum < 18 || ageNum > 99) {
+    if (!ageNum || ageNum < 23 || ageNum > 99) {
       return setError(
-        "Wpisz prawidłowy wiek od 18 do 99 lat."
+        "Wpisz prawidłowy wiek od 23 do 99 lat."
       );
     }
 
@@ -183,8 +184,18 @@ export default function ApplicationForm() {
         );
       }
 
-      // Important: Meta conversion events are intentionally NOT fired here.
-      // They fire only after the applicant confirms they want to continue in Telegram.
+      // Meta conversion events are intentionally NOT fired here.
+      // TikTok records the successful application submission at this stage.
+      try {
+        ttqTrack("SubmitApplication", {
+          action: "application_saved",
+        });
+      } catch {
+        // The application flow must continue even if TikTok tracking is unavailable.
+      }
+
+      // Meta Lead / CompleteRegistration and TikTok Lead / CompleteRegistration
+      // fire only after the applicant confirms they want to continue in Telegram.
       setSubmittedIsNew(data.isNew === true);
       setSubmittedLeadId(typeof data.id === "number" ? data.id : null);
       setSubmittedPhoneE164(data.phone_e164 || phoneE164);
@@ -235,6 +246,14 @@ export default function ApplicationForm() {
         // Telegram can still open if the browser pixel event cannot be sent.
       }
 
+      try {
+        ttqTrack("Lead", {
+          action: "telegram_continue",
+        });
+      } catch {
+        // Telegram can still open if TikTok tracking is unavailable.
+      }
+
       if (submittedIsNew) {
         try {
           fbqTrack("CompleteRegistration", {
@@ -242,6 +261,14 @@ export default function ApplicationForm() {
           });
         } catch {
           // Telegram can still open if the browser pixel event cannot be sent.
+        }
+
+        try {
+          ttqTrack("CompleteRegistration", {
+            action: "unique_phone_telegram_continue",
+          });
+        } catch {
+          // Telegram can still open if TikTok tracking is unavailable.
         }
       }
 
@@ -354,7 +381,7 @@ export default function ApplicationForm() {
 
         <input
           type="number"
-          min={18}
+          min={23}
           max={99}
           placeholder="Wpisz swój wiek"
           value={age}
